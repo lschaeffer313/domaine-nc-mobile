@@ -1,14 +1,29 @@
+import 'package:domaine_nc_mobile/model/domaine_search_result.dart';
+import 'package:domaine_nc_mobile/page/domaine_detail_page.dart';
 import 'package:domaine_nc_mobile/page/info_search_page.dart';
 import 'package:domaine_nc_mobile/page/search_domaine_page.dart';
 import 'package:flutter/material.dart';
 
 class SearchRoute {
+  static const defaultRoute = "/";
+  static const searchDomaineRoute = "/searchDomaine";
+  static const domaineInfoRoute = "/domaineInfo";
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    final args = settings.arguments;
+
     switch (settings.name) {
-      case '/':
+      case defaultRoute:
         return CustomPageRoute(builder: (_) => const InfoSearchPage());
-      case '/searchDomain':
+      case searchDomaineRoute:
         return CustomPageRoute(builder: (_) => const SearchDomainPage());
+      case domaineInfoRoute:
+        if (args is DomaineSearchResult) {
+          return CustomPageRoute(
+            builder: (_) => DomaineDetailPage(domaineSearchResult: args),
+          );
+        }
+        break;
     }
     return _errorRoute();
   }

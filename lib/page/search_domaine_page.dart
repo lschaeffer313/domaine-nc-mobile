@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:domaine_nc_mobile/model/domaine.dart';
+import 'package:domaine_nc_mobile/model/domaine_search_result.dart';
+import 'package:domaine_nc_mobile/routes/search_route.dart';
 import 'package:domaine_nc_mobile/service/domaine_service.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
@@ -57,6 +58,13 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
             padding: const EdgeInsets.symmetric(vertical: 10),
             itemBuilder: (context, index) {
               return ListTile(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    SearchRoute.domaineInfoRoute,
+                    arguments: _searchResults[index],
+                  );
+                },
                 leading: const Icon(
                   Icons.public,
                   color: Colors.yellow,

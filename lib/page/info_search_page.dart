@@ -14,7 +14,7 @@ class InfoSearchPage extends StatefulWidget {
 
 class _InfoSearchPageState extends State<InfoSearchPage> {
   void navigateToSearchDomain() {
-    Navigator.pushNamed(context, "/searchDomain");
+    Navigator.pushNamed(context, SearchRoute.searchDomaineRoute);
   }
 
   Widget _searchBar() {
