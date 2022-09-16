@@ -1,3 +1,4 @@
+import 'package:domaine_nc_mobile/routes/search_route.dart';
 import 'package:flutter/material.dart';
 
 class InfoSearchPage extends StatefulWidget {
@@ -17,29 +18,28 @@ class _InfoSearchPageState extends State<InfoSearchPage> {
   }
 
   Widget _searchBar() {
-    return FocusScope(
-      onFocusChange: ((value) => navigateToSearchDomain()),
-      child: Hero(
-        tag: widget.idTagHero,
-        child: const Material(
-          color: Colors.grey,
-          child: TextField(
-            decoration: InputDecoration(
-              prefixIcon: Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                borderSide: BorderSide(color: Colors.white),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                borderSide: BorderSide(color: Colors.grey),
-              ),
-              filled: true,
-              fillColor: Colors.grey,
+    return Hero(
+      tag: widget.idTagHero,
+      child: Material(
+        color: Colors.grey,
+        child: TextField(
+          onTap: () => navigateToSearchDomain(),
+          readOnly: true,
+          decoration: const InputDecoration(
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.black,
             ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderSide: BorderSide(color: Colors.white),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            filled: true,
+            fillColor: Colors.grey,
           ),
         ),
       ),
