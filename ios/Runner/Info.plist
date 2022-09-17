@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Add event for domain expiration</string>
 	<key>CFBundleDisplayName</key>
 	<string>Domaine Nc Mobile</string>
 	<key>CFBundleExecutable</key>

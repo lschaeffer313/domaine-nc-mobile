@@ -1,3 +1,4 @@
+import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:domaine_nc_mobile/model/domaine_info.dart';
 import 'package:domaine_nc_mobile/model/domaine_search_result.dart';
 import 'package:domaine_nc_mobile/service/domaine_service.dart';
@@ -42,6 +43,19 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
 
   String _removeFirstDotInDomainExtension() {
     return widget.domaineSearchResult.extension.substring(1);
+  }
+
+  void _addEventToCalendar() {
+    var event = Event(
+      title:
+          'Expiration du domaine ${_domaineInfo.nom}.${_domaineInfo.extension}',
+      description: 'Ce domaine doit être renouvellé',
+      startDate: _domaineInfo.dateExpiration,
+      endDate: _domaineInfo.dateExpiration.add(
+        const Duration(hours: 3),
+      ),
+    );
+    Add2Calendar.addEvent2Cal(event);
   }
 
   String _timeBeforeExpire() {
@@ -234,6 +248,12 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: _isLoading ? _skeletonLoader() : _displayDomaineInfo(),
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _isLoading ? null : _addEventToCalendar,
+        label: const Text('Ajout rappel expiration'),
+        icon: const Icon(Icons.calendar_today),
+        backgroundColor: Colors.yellow,
       ),
     );
   }
