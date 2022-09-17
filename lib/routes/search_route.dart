@@ -19,7 +19,7 @@ class SearchRoute {
         return CustomPageRoute(builder: (_) => const SearchDomainPage());
       case domaineInfoRoute:
         if (args is DomaineSearchResult) {
-          return CustomPageRoute(
+          return MaterialPageRoute(
             builder: (_) => DomaineDetailPage(domaineSearchResult: args),
           );
         }

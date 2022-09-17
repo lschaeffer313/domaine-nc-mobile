@@ -12,19 +12,19 @@ class DomaineDetailPage extends StatefulWidget {
   });
   final DomaineSearchResult domaineSearchResult;
   final colorPageTheme = Colors.grey;
+  final styleInfo = const TextStyle(
+    color: Colors.yellow,
+    fontWeight: FontWeight.bold,
+    fontSize: 20,
+  );
 
   @override
   State<DomaineDetailPage> createState() => _DomaineDetailPage();
 }
 
 class _DomaineDetailPage extends State<DomaineDetailPage> {
-  late DomaineInfo domaineInfo;
-  bool isLoading = true;
-  final styleInfo = const TextStyle(
-    color: Colors.yellow,
-    fontWeight: FontWeight.bold,
-    fontSize: 20,
-  );
+  late DomaineInfo _domaineInfo;
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -33,15 +33,15 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
       widget.domaineSearchResult.name,
       widget.domaineSearchResult.extension.split('.')[1],
     ).then((domaineInfo) {
-      this.domaineInfo = domaineInfo;
+      _domaineInfo = domaineInfo;
       setState(() {
-        isLoading = false;
+        _isLoading = false;
       });
     });
   }
 
-  String timeBeforeExpire() {
-    var days = domaineInfo.nbDaysBeforeExpires;
+  String _timeBeforeExpire() {
+    var days = _domaineInfo.nbDaysBeforeExpires;
     if (days < 30) {
       return "$days jours restant";
     } else if (days >= 30 && days < 365) {
@@ -53,9 +53,9 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
     }
   }
 
-  String listeDNS() {
+  String _listeDNS() {
     var buffer = StringBuffer();
-    for (var dns in domaineInfo.dns) {
+    for (var dns in _domaineInfo.dns) {
       buffer.write("$dns, ");
     }
     if (buffer.isEmpty) {
@@ -64,7 +64,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
     return buffer.toString().substring(0, buffer.length - 2);
   }
 
-  List<Widget> skeletonLoader() {
+  List<Widget> _skeletonLoader() {
     final defaultSkeletonTile = SkeletonListTile(
       leadingStyle: const SkeletonAvatarStyle(
         shape: BoxShape.circle,
@@ -103,9 +103,9 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
     ];
   }
 
-  List<Widget> displayDomaineInfo() {
-    var dateCreation = DateFormat.yMMMd().format(domaineInfo.dateCreation);
-    var dateExpiration = DateFormat.yMMMd().format(domaineInfo.dateExpiration);
+  List<Widget> _displayDomaineInfo() {
+    var dateCreation = DateFormat.yMMMd().format(_domaineInfo.dateCreation);
+    var dateExpiration = DateFormat.yMMMd().format(_domaineInfo.dateExpiration);
     return [
       ListTile(
         contentPadding: const EdgeInsets.symmetric(
@@ -118,7 +118,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
           size: 50,
         ),
         title: Text(
-          "${domaineInfo.nom}.${domaineInfo.extension}",
+          "${_domaineInfo.nom}.${_domaineInfo.extension}",
           style: const TextStyle(
             color: Colors.yellow,
             fontWeight: FontWeight.bold,
@@ -134,9 +134,9 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
         ),
         title: Text(
           "Bénéficiaire: ",
-          style: styleInfo,
+          style: widget.styleInfo,
         ),
-        subtitle: Text(domaineInfo.beneficiaire),
+        subtitle: Text(_domaineInfo.beneficiaire),
       ),
       ListTile(
         leading: const Icon(
@@ -146,9 +146,9 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
         ),
         title: Text(
           "Gestionnaire : ",
-          style: styleInfo,
+          style: widget.styleInfo,
         ),
-        subtitle: Text(domaineInfo.gestionnaire),
+        subtitle: Text(_domaineInfo.gestionnaire),
       ),
       ListTile(
         leading: const Icon(
@@ -158,7 +158,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
         ),
         title: Text(
           "Date de création : ",
-          style: styleInfo,
+          style: widget.styleInfo,
         ),
         subtitle: Text(dateCreation),
       ),
@@ -170,19 +170,19 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
         ),
         title: Text(
           "Date d'expiration : ",
-          style: styleInfo,
+          style: widget.styleInfo,
         ),
         subtitle: Text(dateExpiration),
       ),
       ListTile(
         leading: Icon(
-          domaineInfo.isProtected ? Icons.shield : Icons.remove_moderator,
+          _domaineInfo.isProtected ? Icons.shield : Icons.remove_moderator,
           color: Colors.yellow,
           size: 40,
         ),
         title: Text(
-          domaineInfo.isProtected ? "Est protéger" : "N'est pas protéger",
-          style: styleInfo,
+          _domaineInfo.isProtected ? "Est protéger" : "N'est pas protéger",
+          style: widget.styleInfo,
         ),
       ),
       ListTile(
@@ -193,9 +193,9 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
         ),
         title: Text(
           "Temps avant expiration",
-          style: styleInfo,
+          style: widget.styleInfo,
         ),
-        subtitle: Text(timeBeforeExpire()),
+        subtitle: Text(_timeBeforeExpire()),
       ),
       ListTile(
         leading: const Icon(
@@ -205,9 +205,9 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
         ),
         title: Text(
           "Serveur DNS",
-          style: styleInfo,
+          style: widget.styleInfo,
         ),
-        subtitle: Text(listeDNS()),
+        subtitle: Text(_listeDNS()),
       ),
     ];
   }
@@ -228,7 +228,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: isLoading ? skeletonLoader() : displayDomaineInfo(),
+          children: _isLoading ? _skeletonLoader() : _displayDomaineInfo(),
         ),
       ),
     );

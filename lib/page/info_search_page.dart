@@ -1,3 +1,4 @@
+import 'package:domaine_nc_mobile/widget/search_bar.dart';
 import 'package:domaine_nc_mobile/routes/search_route.dart';
 import 'package:flutter/material.dart';
 
@@ -17,35 +18,6 @@ class _InfoSearchPageState extends State<InfoSearchPage> {
     Navigator.pushNamed(context, SearchRoute.searchDomaineRoute);
   }
 
-  Widget _searchBar() {
-    return Hero(
-      tag: widget.idTagHero,
-      child: Material(
-        color: Colors.grey,
-        child: TextField(
-          onTap: () => navigateToSearchDomain(),
-          readOnly: true,
-          decoration: const InputDecoration(
-            prefixIcon: Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              borderSide: BorderSide(color: Colors.white),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              borderSide: BorderSide(color: Colors.grey),
-            ),
-            filled: true,
-            fillColor: Colors.grey,
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +34,17 @@ class _InfoSearchPageState extends State<InfoSearchPage> {
               const SizedBox(
                 height: 10,
               ),
-              _searchBar()
+              Hero(
+                tag: widget.idTagHero,
+                child: Material(
+                  color: Colors.grey,
+                  child: SearchBar(
+                    isAutoFocus: false,
+                    readOnly: true,
+                    callbackOnTap: navigateToSearchDomain,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

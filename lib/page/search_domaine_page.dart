@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:domaine_nc_mobile/widget/search_bar.dart';
 import 'package:domaine_nc_mobile/model/domaine_search_result.dart';
 import 'package:domaine_nc_mobile/routes/search_route.dart';
 import 'package:domaine_nc_mobile/service/domaine_service.dart';
@@ -87,40 +88,6 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
     }
   }
 
-  Widget _searchBar() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Hero(
-        tag: widget.idTagHero,
-        child: Material(
-          color: Colors.grey,
-          child: TextField(
-            controller: _searchController,
-            autofocus: true,
-            decoration: const InputDecoration(
-              prefixIcon: Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
-              suffix: Text(".nc"),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                borderSide: BorderSide(color: Colors.white),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                borderSide: BorderSide(color: Colors.yellow),
-              ),
-              filled: true,
-              fillColor: Colors.grey,
-            ),
-            onChanged: _searchDomainChanged,
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _skeletonLoader() {
     return Padding(
       padding: const EdgeInsets.only(top: 18, left: 8),
@@ -156,7 +123,18 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              _searchBar(),
+              Hero(
+                tag: widget.idTagHero,
+                child: Material(
+                  color: Colors.grey,
+                  child: SearchBar(
+                    isAutoFocus: true,
+                    readOnly: false,
+                    searchController: _searchController,
+                    callBackOnChanged: _searchDomainChanged,
+                  ),
+                ),
+              ),
               Expanded(
                 child: _isLoading ? _skeletonLoader() : _displayDomainResult(),
               )

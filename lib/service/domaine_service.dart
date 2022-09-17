@@ -5,8 +5,7 @@ import 'package:domaine_nc_mobile/model/domaine_info.dart';
 import 'package:http/http.dart' as http;
 
 class DomaineService {
-  static const serverUrl =
-      "http://localhost:8080";
+  static const serverUrl = "http://localhost:8080";
 
   static Future<List<DomaineSearchResult>> fetchDomainFromSearch(
       String query) async {
