@@ -31,13 +31,17 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
     super.initState();
     DomaineService.getDomainInfo(
       widget.domaineSearchResult.name,
-      widget.domaineSearchResult.extension.split('.')[1],
+      _removeFirstDotInDomainExtension(),
     ).then((domaineInfo) {
       _domaineInfo = domaineInfo;
       setState(() {
         _isLoading = false;
       });
     });
+  }
+
+  String _removeFirstDotInDomainExtension() {
+    return widget.domaineSearchResult.extension.substring(1);
   }
 
   String _timeBeforeExpire() {
