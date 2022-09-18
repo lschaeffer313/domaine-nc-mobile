@@ -5,12 +5,12 @@ import 'package:domaine_nc_mobile/model/domaine_info.dart';
 import 'package:http/http.dart' as http;
 
 class DomaineService {
-  static const serverUrl = "http://localhost:8080";
+  static const _serverUrl = "http://localhost:8080";
 
   static Future<List<DomaineSearchResult>> fetchDomainFromSearch(
       String query) async {
     final response =
-        await http.get(Uri.parse("$serverUrl/domaines?startswith=$query"));
+        await http.get(Uri.parse("$_serverUrl/domaines?startswith=$query"));
 
     if (response.statusCode == 200) {
       Iterable iterableJson = jsonDecode(response.body);
@@ -26,7 +26,7 @@ class DomaineService {
     String name,
     String extension,
   ) async {
-    final response = await http.get(Uri.parse("$serverUrl/$name/$extension"));
+    final response = await http.get(Uri.parse("$_serverUrl/$name/$extension"));
 
     if (response.statusCode == 200) {
       return DomaineInfo.fromJson(jsonDecode(response.body));
