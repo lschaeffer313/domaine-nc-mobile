@@ -1,0 +1,21 @@
+name: Update version
+
+on: workflow_dispatch
+
+jobs:
+  conventional-commits-versionning:
+    name: Bump version with semantic-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Semantic Release
+        id: release
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          extra_plugins: |
+            @semantic-release/exec
+            @semantic-release/git
+            @semantic-release/github
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+  
