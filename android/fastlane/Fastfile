@@ -1,0 +1,28 @@
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new alpha build to Google Play"
+  lane :alpha do
+    sh "flutter build appbundle"
+    upload_to_play_store(
+      track: 'alpha',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
+      )
+  end
+
+  desc "Promote alpha track to prod"
+  lane :promote_to_production do
+    upload_to_play_store(
+      track: 'alpha',
+      track_promote_to: 'production',
+      skip_upload_changelogs: true,
+      json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
+      )
+  end
+end
