@@ -1,6 +1,9 @@
 name: Update version
 
-on: workflow_dispatch
+on:
+ push:
+  branches:
+    - "master"
 
 jobs:
   conventional-commits-versionning:
@@ -8,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.TOKEN }}
       - name: Semantic Release
         id: release
         uses: cycjimmy/semantic-release-action@v2
