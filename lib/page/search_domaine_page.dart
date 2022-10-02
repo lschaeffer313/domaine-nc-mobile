@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:domaine_nc_mobile/widget/search_bar.dart';
 import 'package:domaine_nc_mobile/model/domaine_search_result.dart';
 import 'package:domaine_nc_mobile/routes/search_route.dart';
 import 'package:domaine_nc_mobile/service/domaine_service.dart';
+import 'package:domaine_nc_mobile/widget/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
@@ -11,7 +11,6 @@ class SearchDomainPage extends StatefulWidget {
   const SearchDomainPage({super.key});
 
   final edgeInsets = const EdgeInsets.symmetric(horizontal: 20);
-  final colorPageTheme = Colors.grey;
   final idTagHero = "searchbar";
 
   @override
@@ -68,11 +67,27 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
                 },
                 leading: const Icon(
                   Icons.public,
-                  color: Colors.yellow,
                   size: 40,
                 ),
-                title: Text(_searchResults[index].name),
-                subtitle: Text("Extension: ${_searchResults[index].extension}"),
+                title: Padding(
+                  padding: const EdgeInsets.only(bottom: 5.0),
+                  child: Text(
+                    _searchResults[index].name,
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: Text(
+                    "Extension: ${_searchResults[index].extension}",
+                    style: const TextStyle(
+                      color: Colors.black45,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
               );
             },
           ),
@@ -115,11 +130,10 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.colorPageTheme,
+      color: Colors.grey,
       child: SafeArea(
         bottom: false,
         child: Scaffold(
-          backgroundColor: widget.colorPageTheme,
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[

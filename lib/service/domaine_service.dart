@@ -8,7 +8,7 @@ class DomaineService {
   static const String _serverUrl = "https://domaine-nc.p.rapidapi.com";
 
   static const Map<String, String> _headers = {
-    'X-RapidAPI-Key': '[GIVE ME AN API KEY]',
+    'X-RapidAPI-Key': '5b40189e5bmshf77352a1f7eceffp18b1a5jsnf84792987cd3',
   };
 
   static Future<List<DomaineSearchResult>> fetchDomainFromSearch(

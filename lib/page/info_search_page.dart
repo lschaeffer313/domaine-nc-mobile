@@ -6,7 +6,6 @@ class InfoSearchPage extends StatefulWidget {
   const InfoSearchPage({super.key});
 
   final edgeInsets = const EdgeInsets.symmetric(horizontal: 20);
-  final Color colorPageTheme = Colors.grey;
   final idTagHero = "searchbar";
 
   @override
@@ -21,7 +20,6 @@ class _InfoSearchPageState extends State<InfoSearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: widget.colorPageTheme,
       body: Padding(
         padding: widget.edgeInsets,
         child: Center(

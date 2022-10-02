@@ -1,4 +1,5 @@
 import 'package:domaine_nc_mobile/routes/search_route.dart';
+import 'package:domaine_nc_mobile/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -15,8 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Intl.defaultLocale = "fr_FR";
     initializeDateFormatting("fr_FR");
-    return const MaterialApp(
+    return MaterialApp(
       title: 'DomaineNcMobile',
+      theme: ThemeDataApp.getThemeData(),
       initialRoute: '/',
       onGenerateRoute: SearchRoute.generateRoute,
     );
