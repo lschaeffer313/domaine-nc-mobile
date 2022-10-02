@@ -13,10 +13,12 @@ class DomaineDetailPage extends StatefulWidget {
   });
   final DomaineSearchResult domaineSearchResult;
   final colorPageTheme = Colors.grey;
-  final styleInfo = const TextStyle(
-    color: Colors.yellow,
+  final styleTextTitle = const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 20,
+  );
+  final styleDefaultText = const TextStyle(
+    color: Colors.black45,
   );
 
   @override
@@ -132,13 +134,11 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
         ),
         leading: const Icon(
           Icons.public,
-          color: Colors.yellow,
           size: 50,
         ),
         title: Text(
           "${_domaineInfo.nom}.${_domaineInfo.extension}",
           style: const TextStyle(
-            color: Colors.yellow,
             fontWeight: FontWeight.bold,
             fontSize: 40,
           ),
@@ -147,85 +147,96 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
       ListTile(
         leading: const Icon(
           Icons.wallet,
-          color: Colors.yellow,
           size: 40,
         ),
         title: Text(
           "Bénéficiaire: ",
-          style: widget.styleInfo,
+          style: widget.styleTextTitle,
         ),
-        subtitle: Text(_domaineInfo.beneficiaire),
+        subtitle: Text(
+          _domaineInfo.beneficiaire,
+          style: widget.styleDefaultText,
+        ),
       ),
       ListTile(
         leading: const Icon(
           Icons.person,
-          color: Colors.yellow,
           size: 40,
         ),
         title: Text(
           "Gestionnaire : ",
-          style: widget.styleInfo,
+          style: widget.styleTextTitle,
         ),
-        subtitle: Text(_domaineInfo.gestionnaire),
+        subtitle: Text(
+          _domaineInfo.gestionnaire,
+          style: widget.styleDefaultText,
+        ),
       ),
       ListTile(
         leading: const Icon(
           Icons.task_alt,
-          color: Colors.yellow,
           size: 40,
         ),
         title: Text(
           "Date de création : ",
-          style: widget.styleInfo,
+          style: widget.styleTextTitle,
         ),
-        subtitle: Text(dateCreation),
+        subtitle: Text(
+          dateCreation,
+          style: widget.styleDefaultText,
+        ),
       ),
       ListTile(
         leading: const Icon(
           Icons.event_busy,
-          color: Colors.yellow,
           size: 40,
         ),
         title: Text(
           "Date d'expiration : ",
-          style: widget.styleInfo,
+          style: widget.styleTextTitle,
         ),
-        subtitle: Text(dateExpiration),
+        subtitle: Text(
+          dateExpiration,
+          style: widget.styleDefaultText,
+        ),
       ),
       ListTile(
         leading: Icon(
           _domaineInfo.isProtected ? Icons.shield : Icons.remove_moderator,
-          color: Colors.yellow,
           size: 40,
         ),
         title: Text(
           _domaineInfo.isProtected ? "Est protéger" : "N'est pas protéger",
-          style: widget.styleInfo,
+          style: widget.styleTextTitle,
         ),
       ),
       ListTile(
         leading: const Icon(
           Icons.hourglass_bottom,
-          color: Colors.yellow,
           size: 40,
         ),
         title: Text(
           "Temps avant expiration",
-          style: widget.styleInfo,
+          style: widget.styleTextTitle,
         ),
-        subtitle: Text(_timeBeforeExpire()),
+        subtitle: Text(
+          _timeBeforeExpire(),
+          style: widget.styleDefaultText,
+        ),
       ),
       ListTile(
         leading: const Icon(
           Icons.dns_rounded,
-          color: Colors.yellow,
           size: 40,
         ),
         title: Text(
           "Serveur DNS",
-          style: widget.styleInfo,
+          style: widget.styleTextTitle,
         ),
-        subtitle: Text(_listeDNS()),
+        subtitle: Text(
+          _listeDNS(),
+          style: widget.styleDefaultText,
+        ),
       ),
     ];
   }
@@ -233,9 +244,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.yellow,
-      ),
+      appBar: AppBar(),
       backgroundColor: widget.colorPageTheme,
       body: Padding(
         padding: const EdgeInsets.only(
@@ -251,9 +260,15 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _isLoading ? null : _addEventToCalendar,
-        label: const Text('Ajout rappel expiration'),
-        icon: const Icon(Icons.calendar_today),
+        label: Text(
+          'Ajout rappel expiration',
+          style: widget.styleDefaultText,
+        ),
         backgroundColor: Colors.yellow,
+        icon: const Icon(
+          Icons.calendar_today,
+          color: Colors.black45,
+        ),
       ),
     );
   }
