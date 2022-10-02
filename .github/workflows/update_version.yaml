@@ -3,7 +3,7 @@ name: Update version
 on:
  push:
   branches:
-    - "master"
+    - "main"
 
 jobs:
   conventional-commits-versionning:
