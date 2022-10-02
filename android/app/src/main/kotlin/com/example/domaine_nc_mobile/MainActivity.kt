@@ -1,4 +1,4 @@
-package com.example.domaine_nc_mobile
+package nc.laurent.domaine_nc_mobile
 
 import io.flutter.embedding.android.FlutterActivity
 
