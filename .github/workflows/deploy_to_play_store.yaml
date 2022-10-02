@@ -5,7 +5,7 @@ on:
       lane:
         description: "Fastlane lane"
         required: true
-        default: "Alpha"
+        default: "alpha"
         type: choice
         options:
           - alpha
@@ -15,14 +15,16 @@ jobs:
   fastlane-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: master
-      - run: flutter doctor -v
-
       - name: Checkout Code
         uses: actions/checkout@v3
+
+      - name: Setup Flutter environnement
+        uses: subosito/flutter-action@v2.7.1
+        with:
+          channel: 'master'
+
+      - name: Get Application dependencies
+        run: flutter pub get
 
       - name: Set Rapid API Key
         run: |
@@ -30,10 +32,6 @@ jobs:
         env:
           RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
 
-      - name: Get Application dependencies
-        run: flutter pub get
-
-      # Setup Ruby, Bundler, and Gemfile dependencies
       - name: Setup Fastlane
         uses: ruby/setup-ruby@v1
         with:
