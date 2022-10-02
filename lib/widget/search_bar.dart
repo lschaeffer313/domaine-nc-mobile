@@ -28,19 +28,8 @@ class SearchBar extends StatelessWidget {
         decoration: const InputDecoration(
           prefixIcon: Icon(
             Icons.search,
-            color: Colors.black,
           ),
           suffix: Text(".nc"),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            borderSide: BorderSide(color: Colors.white),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            borderSide: BorderSide(color: Colors.yellow),
-          ),
-          filled: true,
-          fillColor: Colors.grey,
         ),
         onChanged: callBackOnChanged,
       ),
