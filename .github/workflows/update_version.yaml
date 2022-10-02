@@ -1,13 +1,19 @@
 name: Update version
 
-on: workflow_dispatch
+on:
+ push:
+  branches:
+    - "master"
 
 jobs:
   conventional-commits-versionning:
-    name: Bump version with semantic-release
+    name: Bump version
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.TOKEN }}
       - name: Semantic Release
         id: release
         uses: cycjimmy/semantic-release-action@v2
@@ -18,4 +24,8 @@ jobs:
             @semantic-release/github
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-  
+      - name: Push change to develop branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: develop
