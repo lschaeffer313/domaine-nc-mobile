@@ -1,4 +1,4 @@
-name: Update version
+name: 🎉 Update version
 
 on:
  push:
@@ -7,14 +7,14 @@ on:
 
 jobs:
   conventional-commits-versionning:
-    name: Bump version
+    name: ⬆️ Bump version
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: 🤖 Checkout code
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.TOKEN }}
-      - name: Semantic Release
+      - name: 🏃 Start semantic-release
         id: release
         uses: cycjimmy/semantic-release-action@v2
         with:
@@ -24,7 +24,7 @@ jobs:
             @semantic-release/github
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      - name: Push change to develop branch
+      - name: 📩 Push change to the branch develop
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

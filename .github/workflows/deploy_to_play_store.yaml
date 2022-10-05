@@ -1,4 +1,4 @@
-name: Deploy to Play Store
+name: 🚀 Deploy to Play Store
 on:
   workflow_dispatch:
     inputs:
@@ -15,7 +15,7 @@ jobs:
   fastlane-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: 🤖 Checkout Code
         uses: actions/checkout@v3
 
       - name: Setup Flutter environnement
@@ -23,23 +23,23 @@ jobs:
         with:
           channel: 'master'
 
-      - name: Get Application dependencies
+      - name: 🔄 Get Application dependencies
         run: flutter pub get
 
-      - name: Set Rapid API Key
+      - name: 🔑 Set Rapid API Key
         run: |
           sed -i 's/\[GIVE ME AN API KEY\]/'"${RAPID_API_KEY}"'/g' lib/service/domaine_service.dart
         env:
           RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
 
-      - name: Setup Fastlane
+      - name:  Setup Fastlane
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "2.6"
           bundler-cache: true
           working-directory: android
 
-      - name: Configure Keystore
+      - name: 🔐 Configure Keystore
         run: |
           echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/upload-keystore.jks
           echo "storeFile=upload-keystore.jks" >> key.properties
@@ -53,9 +53,8 @@ jobs:
           KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
         working-directory: android
 
-      # Build and deploy with Fastlane (by default, to alpha track) 🚀.
-      # Naturally, promote_to_production only deploys.
-      - run: bundle exec fastlane ${{ github.event.inputs.lane || 'alpha' }}
+      - name: 🚀 Deploy to play store or 📲 Promote to production
+        run: bundle exec fastlane ${{ github.event.inputs.lane || 'alpha' }}
         env:
           PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
         working-directory: android
