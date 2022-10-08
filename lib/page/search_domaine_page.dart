@@ -22,7 +22,6 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
   var _searchResults = List<DomaineSearchResult>.empty();
   final _searchController = TextEditingController();
   var _isLoading = false;
-  var _isReadOnly = true;
 
   void _searchDomainChanged(String query) {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
