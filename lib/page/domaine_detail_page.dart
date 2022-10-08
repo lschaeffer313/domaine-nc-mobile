@@ -47,29 +47,35 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   }
 
   void _addEventToCalendar() {
-    var event = Event(
-      title:
-          'Expiration du domaine ${_domaineInfo.nom}.${_domaineInfo.extension}',
-      description: 'Ce domaine doit être renouvellé',
-      startDate: _domaineInfo.dateExpiration,
-      endDate: _domaineInfo.dateExpiration.add(
-        const Duration(hours: 3),
-      ),
-    );
-    Add2Calendar.addEvent2Cal(event);
+    if (_domaineInfo.dateExpiration != null) {
+      DateTime dateExpiration = _domaineInfo.dateExpiration!;
+      var event = Event(
+        title:
+            'Expiration du domaine ${_domaineInfo.nom}.${_domaineInfo.extension}',
+        description: 'Ce domaine doit être renouvellé',
+        startDate: dateExpiration,
+        endDate: dateExpiration.add(
+          const Duration(hours: 3),
+        ),
+      );
+      Add2Calendar.addEvent2Cal(event);
+    }
   }
 
   String _timeBeforeExpire() {
     var days = _domaineInfo.nbDaysBeforeExpires;
-    if (days < 30) {
-      return "$days jours restant";
-    } else if (days >= 30 && days < 365) {
-      var month = (days / 30).floor();
-      return "$month mois restant";
-    } else {
-      var year = (days / 365).floor();
-      return "$year année(s) restante";
+    if (days != null) {
+      if (days < 30) {
+        return "$days jours restant";
+      } else if (days >= 30 && days < 365) {
+        var month = (days / 30).floor();
+        return "$month mois restant";
+      } else {
+        var year = (days / 365).floor();
+        return "$year année(s) restante";
+      }
     }
+    return '';
   }
 
   String _listeDNS() {
@@ -118,154 +124,96 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
       defaultSkeletonTile,
       defaultSkeletonTile,
       defaultSkeletonTile,
-      defaultSkeletonTile,
     ];
   }
 
+  ListTile _constructWidgetInfo(Icon icon, String title, String? subtitle,
+      {bool isTitle = false}) {
+    return ListTile(
+      contentPadding:
+          isTitle ? const EdgeInsets.symmetric(horizontal: 0) : null,
+      leading: icon,
+      title: Text(
+        title,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: isTitle ? 35 : null,
+        ),
+      ),
+      subtitle: subtitle != null
+          ? Text(subtitle, style: widget.styleDefaultText)
+          : null,
+    );
+  }
+
   List<Widget> _displayDomaineInfo() {
-    var dateCreation = DateFormat.yMMMd().format(_domaineInfo.dateCreation);
-    var dateExpiration = DateFormat.yMMMd().format(_domaineInfo.dateExpiration);
-    return [
-      ListTile(
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 0,
-        ),
-        leading: const Icon(
-          Icons.public,
-          size: 40,
-        ),
-        title: Text(
-          "${_domaineInfo.nom}.${_domaineInfo.extension}",
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 35,
-          ),
-        ),
-      ),
-      ListTile(
-        leading: const Icon(
-          Icons.wallet,
-          size: 35,
-        ),
-        title: Text(
-          "Bénéficiaire: ",
-          style: widget.styleTextTitle,
-        ),
-        subtitle: Text(
-          _domaineInfo.beneficiaire,
-          style: widget.styleDefaultText,
-        ),
-      ),
-      ListTile(
-        leading: const Icon(
-          Icons.person,
-          size: 40,
-        ),
-        title: Text(
-          "Gestionnaire : ",
-          style: widget.styleTextTitle,
-        ),
-        subtitle: Text(
-          _domaineInfo.gestionnaire,
-          style: widget.styleDefaultText,
-        ),
-      ),
-      ListTile(
-        leading: const Icon(
-          Icons.task_alt,
-          size: 40,
-        ),
-        title: Text(
-          "Date de création : ",
-          style: widget.styleTextTitle,
-        ),
-        subtitle: Text(
-          dateCreation,
-          style: widget.styleDefaultText,
-        ),
-      ),
-      ListTile(
-        leading: const Icon(
-          Icons.event_busy,
-          size: 40,
-        ),
-        title: Text(
-          "Date d'expiration : ",
-          style: widget.styleTextTitle,
-        ),
-        subtitle: Text(
-          dateExpiration,
-          style: widget.styleDefaultText,
-        ),
-      ),
-      ListTile(
-        leading: Icon(
-          _domaineInfo.isProtected ? Icons.shield : Icons.remove_moderator,
-          size: 40,
-        ),
-        title: Text(
-          _domaineInfo.isProtected ? "Est protéger" : "N'est pas protéger",
-          style: widget.styleTextTitle,
-        ),
-      ),
-      ListTile(
-        leading: const Icon(
-          Icons.hourglass_bottom,
-          size: 40,
-        ),
-        title: Text(
-          "Temps avant expiration",
-          style: widget.styleTextTitle,
-        ),
-        subtitle: Text(
-          _timeBeforeExpire(),
-          style: widget.styleDefaultText,
-        ),
-      ),
-      ListTile(
-        leading: const Icon(
-          Icons.dns_rounded,
-          size: 40,
-        ),
-        title: Text(
-          "Serveur DNS",
-          style: widget.styleTextTitle,
-        ),
-        subtitle: Text(
-          _listeDNS(),
-          style: widget.styleDefaultText,
-        ),
-      ),
-    ];
+    var listWidget = List<Widget>.of([
+      _constructWidgetInfo(const Icon(Icons.public, size: 40),
+          "${_domaineInfo.nom}.${_domaineInfo.extension}", null,
+          isTitle: true)
+    ]);
+    if (!_domaineInfo.isProtected) {
+      var dateCreation = DateFormat.yMMMd().format(_domaineInfo.dateCreation!);
+      var dateExpiration =
+          DateFormat.yMMMd().format(_domaineInfo.dateExpiration!);
+      listWidget.addAll([
+        _constructWidgetInfo(const Icon(Icons.wallet, size: 35),
+            "Bénéficiaire: ", _domaineInfo.beneficiaire),
+        _constructWidgetInfo(const Icon(Icons.person, size: 35),
+            "Gestionnaire : ", _domaineInfo.gestionnaire!),
+        _constructWidgetInfo(const Icon(Icons.task_alt, size: 35),
+            "Date de création : ", dateCreation),
+        _constructWidgetInfo(const Icon(Icons.event_busy, size: 35),
+            "Date d'expiration : ", dateExpiration),
+        _constructWidgetInfo(const Icon(Icons.hourglass_bottom, size: 35),
+            "Temps avant expiration", _timeBeforeExpire()),
+        _constructWidgetInfo(
+            const Icon(Icons.dns_rounded, size: 35), "Serveur DNS", _listeDNS())
+      ]);
+    } else {
+      listWidget.add(
+        _constructWidgetInfo(
+            const Icon(Icons.shield, size: 30), "Ce domaine est protégé", null),
+      );
+    }
+    return listWidget;
+  }
+
+  FloatingActionButton? _addEventButton() {
+    if (!_isLoading) {
+      return _domaineInfo.isProtected
+          ? null
+          : FloatingActionButton.extended(
+              onPressed: _addEventToCalendar,
+              label: Text(
+                'Ajout rappel expiration',
+                style: widget.styleDefaultText,
+              ),
+              backgroundColor: Colors.yellow,
+              icon: const Icon(
+                Icons.calendar_today,
+                color: Colors.black45,
+              ),
+            );
+    }
+    return null;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          top: 35,
-          left: 25,
-          right: 20,
+        appBar: AppBar(),
+        body: Padding(
+          padding: const EdgeInsets.only(
+            top: 35,
+            left: 25,
+            right: 20,
+          ),
+          child: ListView(
+            physics: const ClampingScrollPhysics(),
+            children: _isLoading ? _skeletonLoader() : _displayDomaineInfo(),
+          ),
         ),
-        child: ListView(
-          physics: const ClampingScrollPhysics(),
-          children: _isLoading ? _skeletonLoader() : _displayDomaineInfo(),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _isLoading ? null : _addEventToCalendar,
-        label: Text(
-          'Ajout rappel expiration',
-          style: widget.styleDefaultText,
-        ),
-        backgroundColor: Colors.yellow,
-        icon: const Icon(
-          Icons.calendar_today,
-          color: Colors.black45,
-        ),
-      ),
-    );
+        floatingActionButton: _addEventButton());
   }
 }
