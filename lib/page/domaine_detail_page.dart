@@ -12,7 +12,6 @@ class DomaineDetailPage extends StatefulWidget {
     required this.domaineSearchResult,
   });
   final DomaineSearchResult domaineSearchResult;
-  final colorPageTheme = Colors.grey;
   final styleTextTitle = const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 20,
@@ -97,19 +96,19 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
       ),
       hasSubtitle: true,
       padding: const EdgeInsets.symmetric(
-        horizontal: 30,
+        horizontal: 20,
         vertical: 8,
       ),
     );
     return [
       SkeletonListTile(
         titleStyle: const SkeletonLineStyle(
-          width: 200,
+          width: 180,
           height: 40,
         ),
         leadingStyle: const SkeletonAvatarStyle(
-          width: 80,
-          height: 80,
+          width: 50,
+          height: 50,
           shape: BoxShape.circle,
         ),
       ),
@@ -130,24 +129,23 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
       ListTile(
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 0,
-          vertical: 10,
         ),
         leading: const Icon(
           Icons.public,
-          size: 50,
+          size: 40,
         ),
         title: Text(
           "${_domaineInfo.nom}.${_domaineInfo.extension}",
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 40,
+            fontSize: 35,
           ),
         ),
       ),
       ListTile(
         leading: const Icon(
           Icons.wallet,
-          size: 40,
+          size: 35,
         ),
         title: Text(
           "Bénéficiaire: ",
@@ -245,16 +243,14 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      backgroundColor: widget.colorPageTheme,
       body: Padding(
         padding: const EdgeInsets.only(
-          top: 50,
-          left: 30,
+          top: 35,
+          left: 25,
           right: 20,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          physics: const ClampingScrollPhysics(),
           children: _isLoading ? _skeletonLoader() : _displayDomaineInfo(),
         ),
       ),

@@ -22,6 +22,7 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
   var _searchResults = List<DomaineSearchResult>.empty();
   final _searchController = TextEditingController();
   var _isLoading = false;
+  var _isReadOnly = true;
 
   void _searchDomainChanged(String query) {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
@@ -137,6 +138,9 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              Expanded(
+                child: _isLoading ? _skeletonLoader() : _displayDomainResult(),
+              ),
               Hero(
                 tag: widget.idTagHero,
                 child: Material(
@@ -149,9 +153,9 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
                   ),
                 ),
               ),
-              Expanded(
-                child: _isLoading ? _skeletonLoader() : _displayDomainResult(),
-              )
+              const SizedBox(
+                height: 10,
+              ),
             ],
           ),
         ),
