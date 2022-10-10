@@ -9,7 +9,7 @@ on:
         type: choice
         options:
           - alpha
-          - promote_to_production
+          - production
 
 jobs:
   fastlane-deploy:
@@ -52,9 +52,20 @@ jobs:
           KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
           KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
         working-directory: android
+      
+      - name: 🏗 Build Android App Bundle (aab)
+        if: ${{ github.event.inputs.lane }} == 'alpha'
+        run: flutter build appbundle
 
-      - name: 🚀 Deploy to play store or 📲 Promote to production
-        run: bundle exec fastlane ${{ github.event.inputs.lane || 'alpha' }}
+      - name: 🧪 Deploy to closing test
+        if: ${{ github.event.inputs.lane }} == 'alpha'
+        run: bundle exec fastlane alpha
         env:
           PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
         working-directory: android
+
+      - name: 🚀 Deploy to production
+        if: ${{ github.event.inputs.lane }} == 'production'
+        run: bundle exec fastlane promote_to_production
+        env:
+          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
