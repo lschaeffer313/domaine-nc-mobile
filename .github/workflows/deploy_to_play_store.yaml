@@ -18,21 +18,24 @@ jobs:
       - name: 🤖 Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup Flutter environnement
+      - name: 🛠 Setup Flutter environnement
+        if: ${{ github.event.inputs.lane == 'alpha' }}
         uses: subosito/flutter-action@v2.7.1
         with:
-          channel: 'master'
+          channel: "master"
 
       - name: 🔄 Get Application dependencies
+        if: ${{ github.event.inputs.lane == 'alpha' }}
         run: flutter pub get
 
       - name: 🔑 Set Rapid API Key
+        if: ${{ github.event.inputs.lane == 'alpha' }}
         run: |
           sed -i 's/\[GIVE ME AN API KEY\]/'"${RAPID_API_KEY}"'/g' lib/service/domaine_service.dart
         env:
           RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
 
-      - name:  Setup Fastlane
+      - name: 🛠 Setup Fastlane
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "2.6"
@@ -40,6 +43,7 @@ jobs:
           working-directory: android
 
       - name: 🔐 Configure Keystore
+        if: ${{ github.event.inputs.lane == 'alpha' }}
         run: |
           echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/upload-keystore.jks
           echo "storeFile=upload-keystore.jks" >> key.properties
@@ -52,20 +56,20 @@ jobs:
           KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
           KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
         working-directory: android
-      
+
       - name: 🏗 Build Android App Bundle (aab)
-        if: ${{ github.event.inputs.lane }} == 'alpha'
+        if: ${{ github.event.inputs.lane == 'alpha' }}
         run: flutter build appbundle
 
       - name: 🧪 Deploy to closing test
-        if: ${{ github.event.inputs.lane }} == 'alpha'
+        if: ${{ github.event.inputs.lane == 'alpha' }}
         run: bundle exec fastlane alpha
         env:
           PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
         working-directory: android
 
       - name: 🚀 Deploy to production
-        if: ${{ github.event.inputs.lane }} == 'production'
+        if: ${{ github.event.inputs.lane == 'production' }}
         run: bundle exec fastlane promote_to_production
         env:
           PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
