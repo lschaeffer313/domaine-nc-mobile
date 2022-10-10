@@ -73,3 +73,4 @@ jobs:
         run: bundle exec fastlane promote_to_production
         env:
           PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
+        working-directory: android
