@@ -8,7 +8,6 @@ platform :android do
 
   desc "Submit a new alpha build to Google Play"
   lane :alpha do
-    sh "flutter build appbundle"
     upload_to_play_store(
       track: 'alpha',
       aab: '../build/app/outputs/bundle/release/app-release.aab',
