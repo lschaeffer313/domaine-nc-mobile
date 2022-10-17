@@ -20,7 +20,7 @@ jobs:
 
       - name: 🛠 Setup Flutter environnement
         if: ${{ github.event.inputs.lane == 'alpha' }}
-        uses: subosito/flutter-action@v2.7.1
+        uses: subosito/flutter-action@v2.8.0
         with:
           channel: "master"
 
