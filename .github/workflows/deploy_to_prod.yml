@@ -1,0 +1,22 @@
+name: 🚀 Deploy to Play Store
+on:
+  workflow_dispatch:
+
+jobs:
+  fastlane-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🤖 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🛠 Setup Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "2.6"
+          bundler-cache: true
+          working-directory: android
+
+      - name: 🚀 Deploy to production
+        run: bundle exec fastlane promote_to_production
+        env:
+          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}

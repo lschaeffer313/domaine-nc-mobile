@@ -1,15 +1,8 @@
 name: 🚀 Deploy to Play Store
 on:
-  workflow_dispatch:
-    inputs:
-      lane:
-        description: "Fastlane lane"
-        required: true
-        default: "alpha"
-        type: choice
-        options:
-          - alpha
-          - production
+  release:
+    types: [published]
+
 
 jobs:
   fastlane-deploy:
@@ -19,17 +12,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 🛠 Setup Flutter environnement
-        if: ${{ github.event.inputs.lane == 'alpha' }}
         uses: subosito/flutter-action@v2.7.1
         with:
           channel: "master"
 
       - name: 🔄 Get Application dependencies
-        if: ${{ github.event.inputs.lane == 'alpha' }}
         run: flutter pub get
 
       - name: 🔑 Set Rapid API Key
-        if: ${{ github.event.inputs.lane == 'alpha' }}
         run: |
           sed -i 's/\[GIVE ME AN API KEY\]/'"${RAPID_API_KEY}"'/g' lib/service/domaine_service.dart
         env:
@@ -43,7 +33,6 @@ jobs:
           working-directory: android
 
       - name: 🔐 Configure Keystore
-        if: ${{ github.event.inputs.lane == 'alpha' }}
         run: |
           echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/upload-keystore.jks
           echo "storeFile=upload-keystore.jks" >> key.properties
@@ -58,18 +47,10 @@ jobs:
         working-directory: android
 
       - name: 🏗 Build Android App Bundle (aab)
-        if: ${{ github.event.inputs.lane == 'alpha' }}
         run: flutter build appbundle
 
       - name: 🧪 Deploy to closing test
-        if: ${{ github.event.inputs.lane == 'alpha' }}
         run: bundle exec fastlane alpha
         env:
           PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
         working-directory: android
-
-      - name: 🚀 Deploy to production
-        if: ${{ github.event.inputs.lane == 'production' }}
-        run: bundle exec fastlane promote_to_production
-        env:
-          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
