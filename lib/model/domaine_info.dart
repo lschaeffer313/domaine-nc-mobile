@@ -1,16 +1,16 @@
 class DomaineInfo {
-  final String beneficiaire;
-  final DateTime dateCreation;
-  final DateTime dateExpiration;
+  final String? beneficiaire;
+  final DateTime? dateCreation;
+  final DateTime? dateExpiration;
   final List<String> dns;
-  final bool expired;
-  final String extension;
-  final String gestionnaire;
-  final bool isProtected;
-  final int nbDaysBeforeExpires;
+  final bool? expired;
   final String nom;
-  final String note;
-  final String status;
+  final String extension;
+  final String? gestionnaire;
+  final bool isProtected;
+  final String? note;
+  final String? status;
+  final int? nbDaysBeforeExpires;
 
   DomaineInfo({
     required this.beneficiaire,
@@ -28,12 +28,20 @@ class DomaineInfo {
   });
 
   factory DomaineInfo.fromJson(Map<String, dynamic> json) {
-    Iterable iterableJsonDNS = json['dns'];
-    var listDNS = List<String>.from(iterableJsonDNS.map((dns) => dns));
+    var listDNS = List<String>.empty();
+    if (json['dns'] != null) {
+      Iterable<dynamic> iterableJsonDNS = json['dns'];
+      listDNS = List<String>.of(iterableJsonDNS.map((dns) => dns));
+    }
+
     return DomaineInfo(
       beneficiaire: json['beneficiaire'],
-      dateCreation: DateTime.parse(json['dateCreation']),
-      dateExpiration: DateTime.parse(json['dateExpiration']),
+      dateCreation: json['dateCreation'] != null
+          ? DateTime.parse(json['dateCreation'])
+          : null,
+      dateExpiration: json['dateExpiration'] != null
+          ? DateTime.parse(json['dateExpiration'])
+          : null,
       dns: listDNS,
       expired: json['expired'],
       extension: json['extension'],
