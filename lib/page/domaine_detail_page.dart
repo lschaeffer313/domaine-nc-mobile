@@ -2,6 +2,7 @@ import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:domaine_nc_mobile/model/domaine_info.dart';
 import 'package:domaine_nc_mobile/model/domaine_search_result.dart';
 import 'package:domaine_nc_mobile/service/domaine_service.dart';
+import 'package:domaine_nc_mobile/utils/error_utils.dart';
 import 'package:domaine_nc_mobile/widget/custom_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -24,19 +25,25 @@ class DomaineDetailPage extends StatefulWidget {
 class _DomaineDetailPage extends State<DomaineDetailPage> {
   late DomaineInfo _domaineInfo;
   bool _isLoading = true;
+  bool _isError = false;
+  String _errorMessage = "";
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
-    DomaineService.getDomainInfo(
-      widget.domaineSearchResult.name,
-      _removeFirstDotInDomainExtension(),
-    ).then((domaineInfo) {
-      _domaineInfo = domaineInfo;
+    try {
+      _domaineInfo = await DomaineService.getDomainInfo(
+          widget.domaineSearchResult.name, _removeFirstDotInDomainExtension());
       setState(() {
         _isLoading = false;
       });
-    });
+    } on Exception catch (error) {
+      setState(() {
+        _isError = true;
+        _errorMessage = errorMessageType(error);
+        _isLoading = false;
+      });
+    }
   }
 
   String _removeFirstDotInDomainExtension() {
@@ -122,6 +129,14 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
       defaultSkeletonTile,
       defaultSkeletonTile,
     ];
+  }
+
+  List<Widget> _handleResponse() {
+    if (_isError) {
+      return [Text(_errorMessage)];
+    } else {
+      return _displayDomaineInfo();
+    }
   }
 
   List<Widget> _displayDomaineInfo() {
@@ -217,7 +232,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
           ),
           child: ListView(
             physics: const ClampingScrollPhysics(),
-            children: _isLoading ? _skeletonLoader() : _displayDomaineInfo(),
+            children: _isLoading ? _skeletonLoader() : _handleResponse(),
           ),
         ),
         floatingActionButton: _addEventButton());
