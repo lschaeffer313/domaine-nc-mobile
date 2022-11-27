@@ -5,7 +5,6 @@ différents de la vie du développement du produit.
 
 Cette page a pour but de rendre hommage à celles et ceux qui ont rendu et rendent l'aventure possible.
 
-
 ## 🤓 Contributeurs core
 
 Par ordre historique dans l'histoire du projet... et sans qui l'application mobile n'aurait jamais pu voire le jour:

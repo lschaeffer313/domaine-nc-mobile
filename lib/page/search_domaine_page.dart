@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:domaine_nc_mobile/model/domaine_search_result.dart';
 import 'package:domaine_nc_mobile/routes/search_route.dart';
 import 'package:domaine_nc_mobile/service/domaine_service.dart';
+import 'package:domaine_nc_mobile/utils/error_utils.dart';
 import 'package:domaine_nc_mobile/widget/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
@@ -21,9 +22,13 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
   Timer? _debounce;
   var _searchResults = List<DomaineSearchResult>.empty();
   final _searchController = TextEditingController();
-  var _isLoading = false;
+  bool _isLoading = false;
+  bool _isError = false;
+  String _errorMessage = "";
 
-  void _searchDomainChanged(String query) {
+  void _queryChanged(String query) {
+    _isError = false;
+    _errorMessage = "";
     if (_debounce?.isActive ?? false) _debounce?.cancel();
     if (query.isNotEmpty) {
       if (!_isLoading) {
@@ -31,18 +36,44 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
           _isLoading = true;
         });
       }
-      _debounce = Timer(const Duration(milliseconds: 500), () async {
-        var list = await DomaineService.fetchDomainFromSearch(query);
-        setState(() {
-          _searchResults = list;
-          _isLoading = false;
-        });
-      });
+      _debounce = Timer(
+        const Duration(milliseconds: 500),
+        () => _handleFetchDomain(query),
+      );
     } else {
       setState(() {
-        _searchResults.clear();
+        if (_searchResults.isNotEmpty) {
+          _searchResults.clear();
+        }
         _isLoading = false;
       });
+    }
+  }
+
+  void _handleFetchDomain(String query) async {
+    try {
+      var list = await DomaineService.fetchDomainFromSearch(query);
+      setState(() {
+        _searchResults = list;
+        _isLoading = false;
+      });
+    } on Exception catch (err) {
+      setState(() {
+        _isError = true;
+        _errorMessage = errorMessageType(err);
+        _isLoading = false;
+      });
+    }
+  }
+
+  Widget _handleResponse() {
+    if (_isError) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: Center(child: Text(_errorMessage)),
+      );
+    } else {
+      return _displayDomainResult();
     }
   }
 
@@ -138,7 +169,7 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Expanded(
-                child: _isLoading ? _skeletonLoader() : _displayDomainResult(),
+                child: _isLoading ? _skeletonLoader() : _handleResponse(),
               ),
               Hero(
                 tag: widget.idTagHero,
@@ -148,7 +179,7 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
                     isAutoFocus: true,
                     readOnly: false,
                     searchController: _searchController,
-                    callBackOnChanged: _searchDomainChanged,
+                    callBackOnChanged: _queryChanged,
                   ),
                 ),
               ),
