@@ -23,27 +23,29 @@ class DomaineDetailPage extends StatefulWidget {
 }
 
 class _DomaineDetailPage extends State<DomaineDetailPage> {
-  late DomaineInfo _domaineInfo;
+  DomaineInfo? _domaineInfo;
   bool _isLoading = true;
   bool _isError = false;
   String _errorMessage = "";
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
-    try {
-      _domaineInfo = await DomaineService.getDomainInfo(
-          widget.domaineSearchResult.name, _removeFirstDotInDomainExtension());
-      setState(() {
-        _isLoading = false;
-      });
-    } on Exception catch (error) {
-      setState(() {
-        _isError = true;
-        _errorMessage = errorMessageType(error);
-        _isLoading = false;
-      });
-    }
+    DomaineService.getDomainInfo(
+            widget.domaineSearchResult.name, _removeFirstDotInDomainExtension())
+        .then((domainInfo) => {
+              setState(() {
+                _domaineInfo = domainInfo;
+                _isLoading = false;
+              })
+            })
+        .onError((Exception error, stackTrace) => {
+              setState(() {
+                _isError = true;
+                _errorMessage = errorMessageType(error);
+                _isLoading = false;
+              })
+            });
   }
 
   String _removeFirstDotInDomainExtension() {
@@ -51,13 +53,13 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   }
 
   void _addEventToCalendar() {
-    if (_domaineInfo.dateExpiration != null) {
-      DateTime dateExpiration = _domaineInfo.dateExpiration!;
+    if (_domaineInfo!.dateExpiration != null) {
+      DateTime? dateExpiration = _domaineInfo!.dateExpiration;
       var event = Event(
         title:
-            'Expiration du domaine ${_domaineInfo.nom}.${_domaineInfo.extension}',
+            'Expiration du domaine ${_domaineInfo?.nom}.${_domaineInfo?.extension}',
         description: 'Ce domaine doit être renouvellé',
-        startDate: dateExpiration,
+        startDate: dateExpiration!,
         endDate: dateExpiration.add(
           const Duration(hours: 3),
         ),
@@ -67,7 +69,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   }
 
   String _timeBeforeExpire() {
-    var days = _domaineInfo.nbDaysBeforeExpires;
+    var days = _domaineInfo?.nbDaysBeforeExpires;
     if (days != null) {
       if (days < 30) {
         return "$days jours restant";
@@ -84,7 +86,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
 
   String _listeDNS() {
     var buffer = StringBuffer();
-    for (var dns in _domaineInfo.dns) {
+    for (var dns in _domaineInfo!.dns) {
       buffer.write("$dns, ");
     }
     if (buffer.isEmpty) {
@@ -143,24 +145,24 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
     var listWidget = List<Widget>.of([
       DomainSpecificInfo(
         icon: const Icon(Icons.public, size: 40),
-        title: _domaineInfo.nom,
-        subtitle: _domaineInfo.extension,
+        title: _domaineInfo!.nom,
+        subtitle: _domaineInfo!.extension,
         isTitle: true,
       )
     ]);
-    if (!_domaineInfo.isProtected) {
-      var dateCreation = DateFormat.yMMMd().format(_domaineInfo.dateCreation!);
+    if (!_domaineInfo!.isProtected) {
+      var dateCreation = DateFormat.yMMMd().format(_domaineInfo!.dateCreation!);
       var dateExpiration =
-          DateFormat.yMMMd().format(_domaineInfo.dateExpiration!);
+          DateFormat.yMMMd().format(_domaineInfo!.dateExpiration!);
       listWidget.addAll([
         DomainSpecificInfo(
             icon: const Icon(Icons.wallet, size: 35),
             title: "Bénéficiaire: ",
-            subtitle: _domaineInfo.beneficiaire),
+            subtitle: _domaineInfo!.beneficiaire),
         DomainSpecificInfo(
             icon: const Icon(Icons.person, size: 35),
             title: "Gestionnaire : ",
-            subtitle: _domaineInfo.gestionnaire!),
+            subtitle: _domaineInfo!.gestionnaire!),
         DomainSpecificInfo(
             icon: const Icon(Icons.task_alt, size: 35),
             title: "Date de création : ",
@@ -201,8 +203,8 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   }
 
   FloatingActionButton? _addEventButton() {
-    if (!_isLoading) {
-      return _domaineInfo.isProtected
+    if (!_isLoading && !_isError) {
+      return _domaineInfo!.isProtected
           ? null
           : FloatingActionButton.extended(
               onPressed: _addEventToCalendar,
