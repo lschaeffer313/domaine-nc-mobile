@@ -36,7 +36,7 @@ class DomaineService {
   ) async {
     final response = await http
         .get(
-          Uri.parse("$_serverUrl/$name/$extension"),
+          Uri.parse("$_serverUrl/domaines/$name/$extension"),
           headers: _headers,
         )
         .timeout(timeoutDuration);

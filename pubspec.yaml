@@ -37,7 +37,7 @@ dependencies:
   http: ^0.13.5
   skeletons: ^0.0.3
   intl: ^0.17.0
-  add_2_calendar: ^2.2.1
+  add_2_calendar: 2.2.1
 
 dev_dependencies:
   flutter_test:
