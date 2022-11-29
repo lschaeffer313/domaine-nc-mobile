@@ -9,5 +9,7 @@ via la consommation d'API, permet de :
 
 # 🔖 Liens utiles
 
-- [Domaine.NC as a Service in the cloud Series' Articles](https://dev.to/adriens/series/18166)
-- [API sur marketplace](https://rapidapi.com/opt-nc-opt-nc-default/api/domaine-nc/details)
+- 📝 [Domaine.NC as a Service in the cloud Series' Articles](https://dev.to/adriens/series/18166)
+- 🛒 [API sur marketplace](https://rapidapi.com/opt-nc-opt-nc-default/api/domaine-nc/details)
+- 🍿 [Playlist sur YT](https://youtube.com/playlist?list=PL7GdrgVAWcDilGJGeNuVdvCM-lSmt5DNT)
+- 🛍️ [Google Play Store](https://play.google.com/store/apps/details?id=nc.laurent.domaine_nc_mobile)
