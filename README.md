@@ -1,5 +1,11 @@
 # ❔ A propos
 
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+![example workflow](https://github.com/lschaeffer313/domaine-nc-mobile/actions/workflows/deploy_to_prod.yml/badge.svg)
+
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Flutter](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)
+
 `domaine-nc-mobile` est une application mobile développé en mode Open Innovation et qui,
 via la consommation d'API, permet de : 
 
