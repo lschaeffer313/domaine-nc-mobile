@@ -225,18 +225,20 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: Padding(
-          padding: const EdgeInsets.only(
-            top: 35,
-            left: 25,
-            right: 20,
-          ),
-          child: ListView(
-            physics: const ClampingScrollPhysics(),
-            children: _isLoading ? _skeletonLoader() : _handleResponse(),
-          ),
+      appBar: AppBar(),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 20,
+          left: 25,
+          right: 20,
+          bottom: 65,
         ),
-        floatingActionButton: _addEventButton());
+        child: ListView(
+          physics: const ClampingScrollPhysics(),
+          children: _isLoading ? _skeletonLoader() : _handleResponse(),
+        ),
+      ),
+      floatingActionButton: _addEventButton(),
+    );
   }
 }
