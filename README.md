@@ -3,9 +3,9 @@
 `domaine-nc-mobile` est une application mobile développé en mode Open Innovation et qui,
 via la consommation d'API, permet de : 
 
-🔎 **Chercher** des noms de domaines en `.nc`
-✔️ **Visualiser** les détails d'un nom de domaine particulier
-🔔 **Enregistrer** aisément la date d'expiration d'un nom de domaine comme **reminder dans le calendrier** de votre choix
+- 🔎 **Chercher** des noms de domaines en `.nc`
+- ✔️ **Visualiser** les détails d'un nom de domaine particulier
+- 🔔 **Enregistrer** aisément la date d'expiration d'un nom de domaine comme **reminder dans le calendrier** de votre choix
 
 # 🔖 Liens utiles
 
