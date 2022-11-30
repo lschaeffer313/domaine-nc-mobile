@@ -1,16 +1,15 @@
-# domaine_nc_mobile
+# ❔ A propos
 
-A new Flutter project.
+`domaine-nc-mobile` est une application mobile développé en mode Open Innovation et qui,
+via la consommation d'API, permet de : 
 
-## Getting Started
+🔎 **Chercher** des noms de domaines en `.nc`
+✔️ **Visualiser** les détails d'un nom de domaine particulier
+🔔 **Enregistrer** aisément la date d'expiration d'un nom de domaine comme **reminder dans le calendrier** de votre choix
 
-This project is a starting point for a Flutter application.
+# 🔖 Liens utiles
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 📝 [Domaine.NC as a Service in the cloud Series' Articles](https://dev.to/adriens/series/18166)
+- 🛒 [API sur marketplace](https://rapidapi.com/opt-nc-opt-nc-default/api/domaine-nc/details)
+- 🍿 [Playlist sur YT](https://youtube.com/playlist?list=PL7GdrgVAWcDilGJGeNuVdvCM-lSmt5DNT)
+- 🛍️ [Google Play Store](https://play.google.com/store/apps/details?id=nc.laurent.domaine_nc_mobile)
