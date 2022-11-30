@@ -33,6 +33,7 @@ alors mettez votre nom dans la liste :
 
 - 👨 [Philippe Reaud](https://www.linkedin.com/in/philippe-reaud/)
 - 👨 [Ronny Soutart](https://www.linkedin.com/in/ronny-soutart/)
+- 👨 Matthieu Maoudj
 
 ## :octocat:  Contributeurs (data driven)
 
