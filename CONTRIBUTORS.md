@@ -34,6 +34,7 @@ alors mettez votre nom dans la liste :
 - 👨 [Philippe Reaud](https://www.linkedin.com/in/philippe-reaud/)
 - 👨 [Ronny Soutart](https://www.linkedin.com/in/ronny-soutart/)
 - 👨 Matthieu Maoudj
+- 👩 [Sabrina Vérolle](https://www.linkedin.com/in/sabrinaverolle/)
 
 ## :octocat:  Contributeurs (data driven)
 
