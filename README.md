@@ -20,6 +20,18 @@ via la consommation d'API, permet de :
 - 🍿 [Playlist sur YT](https://youtube.com/playlist?list=PL7GdrgVAWcDilGJGeNuVdvCM-lSmt5DNT)
 - 🛍️ [Google Play Store](https://play.google.com/store/apps/details?id=nc.laurent.domaine_nc_mobile)
 
+# 👶 Les noms de domaine en Nouvelle-Calédonie ?
+
+> "Quand on ne connaît pas bien comment internet fonctionne, le système des noms de domaine peut paraître
+> un peu obscur."
+>
+> "Les définitions que l’on trouve n’aident pas vraiment à comprendre le principe,
+> et pourtant, c’est un système relativement simple que tout le monde utilise sans même s’en rendre compte."
+
+Pour tout comprendre sur les noms de domaines en Nouvelle-Calédonie, vous pouvez vous référer à 
+l'excellent article [Les noms de domaine en Nouvelle-Calédonie](https://sysamandine.nc/213-noms-de-domaine-nouvelle-caledonie)
+de [`SYSAMANDINE`](https://sysamandine.nc/).
+
 # 👐 Contribuer
 
 Le but de ce projet est de développer de la connaissance, des relations, des compétences tout
