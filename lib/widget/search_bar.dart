@@ -26,6 +26,9 @@ class SearchBar extends StatelessWidget {
         controller: searchController,
         autofocus: isAutoFocus,
         readOnly: readOnly,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.secondary,
+        ),
         decoration: const InputDecoration(
           prefixIcon: Icon(
             Icons.search,

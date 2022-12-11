@@ -3,7 +3,7 @@ import 'package:domaine_nc_mobile/model/domaine_info.dart';
 import 'package:domaine_nc_mobile/model/domaine_search_result.dart';
 import 'package:domaine_nc_mobile/service/domaine_service.dart';
 import 'package:domaine_nc_mobile/utils/error_utils.dart';
-import 'package:domaine_nc_mobile/widget/custom_list_tile.dart';
+import 'package:domaine_nc_mobile/widget/domain_specific_info.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:skeletons/skeletons.dart';
@@ -14,9 +14,6 @@ class DomaineDetailPage extends StatefulWidget {
     required this.domaineSearchResult,
   });
   final DomaineSearchResult domaineSearchResult;
-  final styleDefaultText = const TextStyle(
-    color: Colors.black45,
-  );
 
   @override
   State<DomaineDetailPage> createState() => _DomaineDetailPage();
@@ -202,7 +199,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
     return listWidget;
   }
 
-  FloatingActionButton? _addEventButton() {
+  FloatingActionButton? _addEventButton(BuildContext context) {
     if (!_isLoading && !_isError) {
       return _domaineInfo!.isProtected
           ? null
@@ -210,12 +207,13 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
               onPressed: _addEventToCalendar,
               label: Text(
                 'Ajout rappel expiration',
-                style: widget.styleDefaultText,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.surface,
+                ),
               ),
-              backgroundColor: Colors.yellow,
-              icon: const Icon(
+              icon: Icon(
                 Icons.calendar_today,
-                color: Colors.black45,
+                color: Theme.of(context).colorScheme.surface,
               ),
             );
     }
@@ -238,7 +236,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
           children: _isLoading ? _skeletonLoader() : _handleResponse(),
         ),
       ),
-      floatingActionButton: _addEventButton(),
+      floatingActionButton: _addEventButton(context),
     );
   }
 }
