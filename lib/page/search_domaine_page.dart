@@ -66,18 +66,18 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
     }
   }
 
-  Widget _handleResponse() {
+  Widget _handleResponse(BuildContext context) {
     if (_isError) {
       return Padding(
         padding: const EdgeInsets.only(top: 20),
         child: Center(child: Text(_errorMessage)),
       );
     } else {
-      return _displayDomainResult();
+      return _displayDomainResult(context);
     }
   }
 
-  Widget _displayDomainResult() {
+  Widget _displayDomainResult(BuildContext context) {
     if (_searchResults.isNotEmpty) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -113,8 +113,8 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
                   padding: const EdgeInsets.only(left: 5.0),
                   child: Text(
                     "Extension: ${_searchResults[index].extension}",
-                    style: const TextStyle(
-                      color: Colors.black45,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
                       fontSize: 15,
                     ),
                   ),
@@ -160,34 +160,30 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey,
-      child: SafeArea(
-        bottom: false,
-        child: Scaffold(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Expanded(
-                child: _isLoading ? _skeletonLoader() : _handleResponse(),
-              ),
-              Hero(
-                tag: widget.idTagHero,
-                child: Material(
-                  color: Colors.grey,
-                  child: SearchBar(
+    return SafeArea(
+      bottom: false,
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: _isLoading ? _skeletonLoader() : _handleResponse(context),
+            ),
+            Hero(
+              tag: widget.idTagHero,
+              child: Material(
+                color: Colors.transparent,
+                child: SearchBar(
                     isAutoFocus: true,
                     readOnly: false,
                     searchController: _searchController,
-                    callBackOnChanged: _queryChanged,
-                  ),
-                ),
+                    callBackOnChanged: _queryChanged),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
         ),
       ),
     );

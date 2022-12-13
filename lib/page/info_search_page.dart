@@ -35,7 +35,7 @@ class _InfoSearchPageState extends State<InfoSearchPage> {
               Hero(
                 tag: widget.idTagHero,
                 child: Material(
-                  color: Colors.grey,
+                  color: Colors.transparent,
                   child: SearchBar(
                     isAutoFocus: false,
                     readOnly: true,
