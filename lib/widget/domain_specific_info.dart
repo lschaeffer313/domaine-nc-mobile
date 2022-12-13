@@ -44,7 +44,14 @@ class DomainSpecificInfo extends StatelessWidget {
               padding: const EdgeInsets.only(left: 5),
               child: Text(
                 subtitle!,
-                style: isTitle ? styleTextSubTitle : styleDefaultText,
+                style: isTitle
+                    ? TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                        fontSize: 18,
+                      )
+                    : TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
               ),
             )
           : null,
