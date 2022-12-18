@@ -8,13 +8,14 @@ class DarkThemeDataApp {
   static const backgroundColor = Colors.black54;
   static ThemeData getThemeData() {
     SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(statusBarColor: DarkThemeDataApp.mainColor));
+      const SystemUiOverlayStyle(statusBarColor: mainColor),
+    );
     return ThemeData(
         brightness: Brightness.dark,
         primarySwatch: DarkThemeDataApp.mainColor,
         appBarTheme: const AppBarTheme(
-          backgroundColor: DarkThemeDataApp.mainColor,
-        ),
+            backgroundColor: DarkThemeDataApp.mainColor,
+            foregroundColor: DarkThemeDataApp.backgroundColor),
         listTileTheme: const ListTileThemeData(
           iconColor: DarkThemeDataApp.mainColor,
           textColor: DarkThemeDataApp.mainColor,
