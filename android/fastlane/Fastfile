@@ -6,21 +6,11 @@ platform :android do
     gradle(task: "test")
   end
 
-  desc "Submit a new alpha build to Google Play"
-  lane :alpha do
+  desc "Submit a new build to Google Play production track"
+  lane :prod do
     upload_to_play_store(
-      track: 'alpha',
+      track: 'production',
       aab: '../build/app/outputs/bundle/release/app-release.aab',
-      json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
-      )
-  end
-
-  desc "Promote alpha track to prod"
-  lane :promote_to_production do
-    upload_to_play_store(
-      track: 'alpha',
-      track_promote_to: 'production',
-      skip_upload_changelogs: true,
       json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
       )
   end
