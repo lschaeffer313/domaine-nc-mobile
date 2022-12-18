@@ -1,4 +1,5 @@
 import 'package:domaine_nc_mobile/model/domaine_search_result.dart';
+import 'package:domaine_nc_mobile/page/about_page.dart';
 import 'package:domaine_nc_mobile/page/domaine_detail_page.dart';
 import 'package:domaine_nc_mobile/page/info_search_page.dart';
 import 'package:domaine_nc_mobile/page/search_domaine_page.dart';
@@ -8,6 +9,7 @@ class SearchRoute {
   static const defaultRoute = "/";
   static const searchDomaineRoute = "/searchDomaine";
   static const domaineInfoRoute = "/domaineInfo";
+  static const aboutPageRoute = "/aboutPage";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -17,6 +19,8 @@ class SearchRoute {
         return CustomPageRoute(builder: (_) => const InfoSearchPage());
       case searchDomaineRoute:
         return CustomPageRoute(builder: (_) => const SearchDomainPage());
+      case aboutPageRoute:
+        return MaterialPageRoute(builder: (_) => const AboutPage());
       case domaineInfoRoute:
         if (args is DomaineSearchResult) {
           return MaterialPageRoute(

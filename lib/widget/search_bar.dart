@@ -1,3 +1,4 @@
+import 'package:domaine_nc_mobile/routes/search_route.dart';
 import 'package:flutter/material.dart';
 
 class SearchBar extends StatelessWidget {
@@ -29,11 +30,15 @@ class SearchBar extends StatelessWidget {
         style: TextStyle(
           color: Theme.of(context).colorScheme.secondary,
         ),
-        decoration: const InputDecoration(
-          prefixIcon: Icon(
+        decoration: InputDecoration(
+          prefixIcon: const Icon(
             Icons.search,
           ),
-          suffix: Text(".nc"),
+          suffixIcon: GestureDetector(
+            child: const Icon(Icons.info_outline_rounded),
+            onTap:() => Navigator.pushNamed(context, SearchRoute.aboutPageRoute),
+          ),
+          suffix: const Text(".nc"),
         ),
         onChanged: callBackOnChanged,
       ),
