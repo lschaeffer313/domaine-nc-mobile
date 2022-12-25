@@ -10,6 +10,7 @@ class DarkThemeDataApp {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: mainColor),
     );
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return ThemeData(
         brightness: Brightness.dark,
         primarySwatch: DarkThemeDataApp.mainColor,
