@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.5
   skeletons: ^0.0.3
-  intl: ^0.17.0
+  intl: ^0.18.0
   add_2_calendar: ^2.2.3
   flutter_markdown: ^0.6.13
   url_launcher: ^6.1.7
