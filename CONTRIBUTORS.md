@@ -36,7 +36,7 @@ alors mettez votre nom dans la liste :
 - 👨 Matthieu Maoudj
 - 👩 [Sabrina Vérolle](https://www.linkedin.com/in/sabrinaverolle/)
 
-## :octocat:  Contributeurs (data driven)
+## 📊  Contributeurs (data driven)
 
 - [Contributions](https://github.com/lschaeffer313/domaine-nc-mobile/graphs/contributors)
 - [Traffic](https://github.com/lschaeffer313/domaine-nc-mobile/graphs/traffic)
