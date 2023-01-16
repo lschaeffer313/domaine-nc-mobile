@@ -31,9 +31,7 @@ Par ordre historique dans l'histoire du projet... et sans qui l'application mobi
 Pas d'[application sans testeurs](https://github.com/lschaeffer313/domaine-nc-mobile/issues/23)...
 alors mettez votre nom dans la liste :
 
-- 👨 [Philippe Reaud](https://www.linkedin.com/in/philippe-reaud/)
 - 👨 [Ronny Soutart](https://www.linkedin.com/in/ronny-soutart/)
-- 👨 Matthieu Maoudj
 - 👩 [Sabrina Vérolle](https://www.linkedin.com/in/sabrinaverolle/)
 
 ## 📊  Contributeurs (data driven)
