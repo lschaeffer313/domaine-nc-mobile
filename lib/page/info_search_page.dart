@@ -27,7 +27,7 @@ class _InfoSearchPageState extends State<InfoSearchPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text(
-                "Chercher un domaine pour avoir plus d'information",
+                "Chercher un domaine pour avoir plus d'informations",
               ),
               const SizedBox(
                 height: 10,
