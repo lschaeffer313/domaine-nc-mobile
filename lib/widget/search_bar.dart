@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 class SearchBar extends StatelessWidget {
   final idTagHero = "searchbar";
+  final hintText = "opt";
+  final String extensionNC = ".nc";
   final bool isAutoFocus;
   final bool readOnly;
   final VoidCallback? callbackOnTap;
@@ -31,14 +33,16 @@ class SearchBar extends StatelessWidget {
           color: Theme.of(context).colorScheme.secondary,
         ),
         decoration: InputDecoration(
+          hintText: hintText,
           prefixIcon: const Icon(
             Icons.search,
           ),
           suffixIcon: GestureDetector(
             child: const Icon(Icons.info_outline_rounded),
-            onTap:() => Navigator.pushNamed(context, SearchRoute.aboutPageRoute),
+            onTap: () =>
+                Navigator.pushNamed(context, SearchRoute.aboutPageRoute),
           ),
-          suffix: const Text(".nc"),
+          suffix: Text(extensionNC),
         ),
         onChanged: callBackOnChanged,
       ),
