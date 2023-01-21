@@ -7,6 +7,7 @@ class SearchBar extends StatelessWidget {
   final hintText = "opt";
   final String extensionNC = ".nc";
   final String regexSpace = r'\s';
+  final int maxSizeDomaine = 63;
   final bool isAutoFocus;
   final bool readOnly;
   final VoidCallback? callbackOnTap;
@@ -28,6 +29,7 @@ class SearchBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: TextField(
         onTap: callbackOnTap,
+        maxLength: maxSizeDomaine,
         controller: searchController,
         autofocus: isAutoFocus,
         readOnly: readOnly,
@@ -38,6 +40,7 @@ class SearchBar extends StatelessWidget {
           color: Theme.of(context).colorScheme.secondary,
         ),
         decoration: InputDecoration(
+          counterText: "",
           hintText: hintText,
           prefixIcon: const Icon(
             Icons.search,
