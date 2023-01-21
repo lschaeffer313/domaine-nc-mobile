@@ -7,6 +7,6 @@ String errorMessageType(Exception e) {
     case TimeoutException:
       return timeoutErrorMessage;
     default:
-      return "Erreur inconnu";
+      return "Erreur inconnue";
   }
 }

@@ -69,13 +69,15 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
     var days = _domaineInfo?.nbDaysBeforeExpires;
     if (days != null) {
       if (days < 30) {
-        return "$days jours restant";
+        return days == 1 ? "$days jours restant" : "$days jours restant(s)";
       } else if (days >= 30 && days < 365) {
         var month = (days / 30).floor();
-        return "$month mois restant";
+        return month == 1 ? "$month mois restant" : "$month mois restant(s)";
       } else {
         var year = (days / 365).floor();
-        return "$year année(s) restante";
+        return year == 1
+            ? "$year année restante"
+            : "$year année(s) restante(s)";
       }
     }
     return '';
