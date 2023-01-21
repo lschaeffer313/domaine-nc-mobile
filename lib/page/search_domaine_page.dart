@@ -25,8 +25,15 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
   bool _isLoading = false;
   bool _isError = false;
   String _errorMessage = "";
+  String _oldQuery = "";
 
   void _queryChanged(String query) {
+    // Prevent from sending request when taping space
+    if (_oldQuery == query) {
+      return;
+    } else {
+      _oldQuery = query;
+    }
     _isError = false;
     _errorMessage = "";
     if (_debounce?.isActive ?? false) _debounce?.cancel();
