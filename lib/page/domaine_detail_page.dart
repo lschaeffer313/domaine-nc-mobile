@@ -24,9 +24,12 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   bool _isLoading = true;
   bool _isError = false;
   String _errorMessage = "";
+  String _title = "";
 
   @override
   void initState() {
+    _title =
+        widget.domaineSearchResult.name + widget.domaineSearchResult.extension;
     super.initState();
     DomaineService.getDomainInfo(
             widget.domaineSearchResult.name, _removeFirstDotInDomainExtension())
@@ -112,17 +115,6 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
       ),
     );
     return [
-      SkeletonListTile(
-        titleStyle: const SkeletonLineStyle(
-          width: 180,
-          height: 40,
-        ),
-        leadingStyle: const SkeletonAvatarStyle(
-          width: 50,
-          height: 50,
-          shape: BoxShape.circle,
-        ),
-      ),
       defaultSkeletonTile,
       defaultSkeletonTile,
       defaultSkeletonTile,
@@ -141,14 +133,8 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   }
 
   List<Widget> _displayDomaineInfo() {
-    var listWidget = List<Widget>.of([
-      DomainSpecificInfo(
-        icon: const Icon(Icons.public, size: 40),
-        title: _domaineInfo!.nom,
-        subtitle: _domaineInfo!.extension,
-        isTitle: true,
-      )
-    ]);
+    _title = _domaineInfo!.nom;
+    var listWidget = List<Widget>.of([]);
     if (!_domaineInfo!.isProtected) {
       var dateCreation = DateFormat.yMMMd().format(_domaineInfo!.dateCreation!);
       var dateExpiration =
@@ -225,7 +211,14 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          _title,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(
           top: 20,
