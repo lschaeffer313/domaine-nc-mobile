@@ -4,7 +4,6 @@ class DomainSpecificInfo extends StatelessWidget {
   final Icon icon;
   final String title;
   final String? subtitle;
-  final bool isTitle;
 
   static const styleTextTitle = TextStyle(
     fontWeight: FontWeight.bold,
@@ -23,20 +22,18 @@ class DomainSpecificInfo extends StatelessWidget {
     required this.icon,
     required this.title,
     this.subtitle,
-    this.isTitle = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding:
-          isTitle ? const EdgeInsets.symmetric(horizontal: 0) : null,
+      contentPadding: null,
       leading: icon,
       title: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.bold,
-          fontSize: isTitle ? 35 : null,
+          fontSize: null,
         ),
       ),
       subtitle: subtitle != null
@@ -44,14 +41,9 @@ class DomainSpecificInfo extends StatelessWidget {
               padding: const EdgeInsets.only(left: 5),
               child: Text(
                 subtitle!,
-                style: isTitle
-                    ? TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontSize: 18,
-                      )
-                    : TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
               ),
             )
           : null,
