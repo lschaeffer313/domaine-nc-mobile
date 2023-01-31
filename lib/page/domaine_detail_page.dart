@@ -212,11 +212,18 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          _title,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+        title: Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            const Icon(Icons.public, size: 28),
+            Text(
+              " $_title",
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+          ],
         ),
       ),
       body: Padding(
