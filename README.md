@@ -15,6 +15,10 @@ via la consommation d'API, permet de :
 - ✔️ **Visualiser** les détails d'un nom de domaine particulier
 - 🔔 **Enregistrer** aisément la date d'expiration d'un nom de domaine comme **reminder dans le calendrier** de votre choix
 
+# 🎦 Pourquoi cette appli' (en moins de `15'`) ❓
+
+Pour comprendre d'où vient cette application, une [video dédiée est disponible](https://youtu.be/Ef8E69UhZ3w?t=5023).
+
 # 🔖 Liens utiles
 
 - 📝 [Domaine.NC as a Service in the cloud Series' Articles](https://dev.to/adriens/series/18166)
