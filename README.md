@@ -8,7 +8,7 @@
 
 ![Discord](https://img.shields.io/discord/1048804601366855713?label=Join%20us%20on%20Discord)
 
-`domaine-nc-mobile` est une application mobile développé en mode Open Innovation et qui,
+`domaine-nc-mobile` est une application mobile développée en mode Open Innovation et qui,
 via la consommation d'API, permet de : 
 
 - 🔎 **Chercher** des noms de domaines en `.nc`
@@ -39,12 +39,13 @@ de [`SYSAMANDINE`](https://sysamandine.nc/).
 Le but de ce projet est de développer de la connaissance, des relations, des compétences tout
 en créant un produit original et efficace... **en se faisant plaisir**.
 
-Ainsi, tout un chacun peut contribuer, quelques exemples : 
+Ainsi, tout le monde peut contribuer, quelques exemples : 
 
-- 🌐 **Créateur de site** web faisant la promotion du projet : [Hugo](https://gohugo.io/), [Jekyll](https://jekyllrb.com/), [Gatsby](https://www.gatsbyjs.com/docs/glossary/static-site-generator/)
-- 🎦 **Youtubeur ou influcenceur** : créer un épisode dédié à cette application, à la démarche communautaire
-- 😎 **Développeur Flutter** : contribuer du code
+- 🌐 **Admin de site web** faisant la promotion du projet : [Hugo](https://gohugo.io/), [Jekyll](https://jekyllrb.com/), [Gatsby](https://www.gatsbyjs.com/docs/glossary/static-site-generator/)
+- 🎦 **Vidéaste Youtube ou autre personne d'influence** : créer un épisode dédié à cette application, à la démarche communautaire
+- 😎 **Dev Flutter** : contribuer du code
 - 💡 **Designer** : proposer des idées de design rendant le produit plus beau et efficace
 - 🎨 **Graphiste** : créer un logo, des visuels
-- 📰 **Chroniqeur IT et média** : faire connaître la démarche dans les médias
+- 📰 **Journaliste IT et média** : faire connaître la démarche dans les médias
+- ✅ **QA** : dénicher les bugs qui seraient passés entre les mailles du filet ! 🐛
 - 🌟 **Tout talent** que vous avez ou souhaitez développer avec nous
