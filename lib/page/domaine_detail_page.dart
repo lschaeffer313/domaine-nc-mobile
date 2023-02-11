@@ -142,7 +142,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
       listWidget.addAll([
         DomainSpecificInfo(
             icon: const Icon(Icons.wallet, size: 35),
-            title: "Bénéficiaire: ",
+            title: "Bénéficiaire : ",
             subtitle: _domaineInfo!.beneficiaire),
         DomainSpecificInfo(
             icon: const Icon(Icons.person, size: 35),
@@ -158,12 +158,12 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
             subtitle: dateExpiration),
         DomainSpecificInfo(
           icon: const Icon(Icons.hourglass_bottom, size: 35),
-          title: "Temps avant expiration",
+          title: "Temps avant expiration :",
           subtitle: _timeBeforeExpire(),
         ),
         DomainSpecificInfo(
           icon: const Icon(Icons.dns_rounded, size: 35),
-          title: "Serveur DNS",
+          title: "Serveur DNS :",
           subtitle: _listeDNS(),
         )
       ]);
