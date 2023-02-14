@@ -1,0 +1,38 @@
+name: 👮‍♀️ Lint dart code
+
+on:
+  pull_request:
+    types:
+      - edited
+      - opened
+      - reopened
+      - ready_for_review
+      - synchronize
+    branches: 
+    - develop
+    - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🤖 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🛠 Setup Flutter environnement
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+
+      - name: 🔍 Check version
+        run: flutter --version
+
+      - name: 🔄 Get Application dependencies
+        run: flutter pub get
+
+      - name: 🎨 Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: 🚨 Analyze project source
+        run: dart analyze --fatal-infos
