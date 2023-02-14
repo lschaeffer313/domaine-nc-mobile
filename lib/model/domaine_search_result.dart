@@ -9,8 +9,8 @@ class DomaineSearchResult {
 
   factory DomaineSearchResult.fromJson(Map<String, dynamic> json) {
     return DomaineSearchResult(
-      extension: json['extension'],
-      name: json['name'],
+      extension: json['extension'] as String,
+      name: json['name'] as String,
     );
   }
 }

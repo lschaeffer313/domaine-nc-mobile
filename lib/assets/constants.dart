@@ -1,3 +1,4 @@
-const timeoutErrorMessage = """Le serveur à mis trop de temps à répondre. 
+const String timeoutErrorMessage =
+    """Le serveur à mis trop de temps à répondre. 
     Veuillez réessayer dans quelque minutes""";
-const timeoutDuration = Duration(seconds: 3);
+const Duration timeoutDuration = Duration(seconds: 3);

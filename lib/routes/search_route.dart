@@ -44,9 +44,10 @@ class SearchRoute {
   }
 }
 
-class CustomPageRoute extends MaterialPageRoute {
+class CustomPageRoute extends MaterialPageRoute<CustomPageRoute> {
   @override
   Duration get transitionDuration => const Duration(milliseconds: 1000);
 
-  CustomPageRoute({builder}) : super(builder: builder);
+  CustomPageRoute({builder})
+      : super(builder: builder as Widget Function(BuildContext));
 }
