@@ -58,7 +58,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
       var event = Event(
         title:
             'Expiration du domaine ${_domaineInfo?.nom}.${_domaineInfo?.extension}',
-        description: 'Ce domaine doit être renouvellé',
+        description: 'Ce domaine doit être renouvelé',
         startDate: dateExpiration!,
         endDate: dateExpiration.add(
           const Duration(hours: 3),
@@ -72,15 +72,15 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
     var days = _domaineInfo?.nbDaysBeforeExpires;
     if (days != null) {
       if (days < 30) {
-        return days == 1 ? "$days jours restant" : "$days jours restant(s)";
+        return days == 1 ? "$days jour restant" : "$days jours restants";
       } else if (days >= 30 && days < 365) {
         var month = (days / 30).floor();
-        return month == 1 ? "$month mois restant" : "$month mois restant(s)";
+        return month == 1 ? "$month mois restant" : "$month mois restants";
       } else {
         var year = (days / 365).floor();
         return year == 1
             ? "$year année restante"
-            : "$year année(s) restante(s)";
+            : "$year années restantes";
       }
     }
     return '';
@@ -142,7 +142,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
       listWidget.addAll([
         DomainSpecificInfo(
             icon: const Icon(Icons.wallet, size: 35),
-            title: "Bénéficiaire: ",
+            title: "Bénéficiaire : ",
             subtitle: _domaineInfo!.beneficiaire),
         DomainSpecificInfo(
             icon: const Icon(Icons.person, size: 35),
@@ -158,12 +158,12 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
             subtitle: dateExpiration),
         DomainSpecificInfo(
           icon: const Icon(Icons.hourglass_bottom, size: 35),
-          title: "Temps avant expiration",
+          title: "Temps avant expiration :",
           subtitle: _timeBeforeExpire(),
         ),
         DomainSpecificInfo(
           icon: const Icon(Icons.dns_rounded, size: 35),
-          title: "Serveur DNS",
+          title: "Serveur DNS :",
           subtitle: _listeDNS(),
         )
       ]);
