@@ -25,6 +25,8 @@ Par ordre historique dans l'histoire du projet... et sans qui l'application mobi
   - Premier développeur mobile à consommer l'API
 - 🧔 [Daniel Santos](https://www.linkedin.com/in/daniel-santos-dev-fullstack/)
   - Conseil en design d'API
+- 🧔🏽 [Christophe ROGER](https://www.linkedin.com/in/christopheroger/)
+  - Designer du [logo](https://github.com/lschaeffer313/domaine-nc-mobile/issues/113)
 
 ## 🧪 Côté test
 
