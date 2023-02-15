@@ -30,27 +30,27 @@ class DomaineInfo {
   factory DomaineInfo.fromJson(Map<String, dynamic> json) {
     var listDNS = List<String>.empty();
     if (json['dns'] != null) {
-      Iterable<dynamic> iterableJsonDNS = json['dns'];
-      listDNS = List<String>.of(iterableJsonDNS.map((dns) => dns));
+      Iterable<dynamic> iterableJsonDNS = json['dns'] as Iterable<dynamic>;
+      listDNS = List<String>.of(iterableJsonDNS.map((dns) => dns as String));
     }
 
     return DomaineInfo(
-      beneficiaire: json['beneficiaire'],
+      beneficiaire: json['beneficiaire'] as String,
       dateCreation: json['dateCreation'] != null
-          ? DateTime.parse(json['dateCreation'])
+          ? DateTime.parse(json['dateCreation'] as String)
           : null,
       dateExpiration: json['dateExpiration'] != null
-          ? DateTime.parse(json['dateExpiration'])
+          ? DateTime.parse(json['dateExpiration'] as String)
           : null,
       dns: listDNS,
-      expired: json['expired'],
-      extension: json['extension'],
-      gestionnaire: json['gestionnaire'],
-      isProtected: json['isProtected'],
-      nbDaysBeforeExpires: json['nbDaysBeforeExpires'],
-      nom: json['nom'],
-      note: json['note'],
-      status: json['status'],
+      expired: json['expired'] as bool,
+      extension: json['extension'] as String,
+      gestionnaire: json['gestionnaire'] as String,
+      isProtected: json['isProtected'] as bool,
+      nbDaysBeforeExpires: json['nbDaysBeforeExpires'] as int,
+      nom: json['nom'] as String,
+      note: json['note'] as String,
+      status: json['status'] as String,
     );
   }
 }

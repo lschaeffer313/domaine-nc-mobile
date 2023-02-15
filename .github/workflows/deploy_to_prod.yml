@@ -16,6 +16,9 @@ jobs:
         with:
           channel: "stable"
 
+      - name : 🔍 Check version
+        run: flutter --version
+
       - name: 🔄 Get Application dependencies
         run: flutter pub get
 
