@@ -21,9 +21,11 @@ class DomaineService {
         .timeout(timeoutDuration);
 
     if (response.statusCode == 200) {
-      Iterable iterableJson = jsonDecode(response.body);
+      Iterable<dynamic> iterableJson =
+          jsonDecode(response.body) as Iterable<dynamic>;
       return List<DomaineSearchResult>.from(
-        iterableJson.map((model) => DomaineSearchResult.fromJson(model)),
+        iterableJson.map((model) =>
+            DomaineSearchResult.fromJson(model as Map<String, dynamic>)),
       );
     } else {
       throw Exception('Failed to load Domaines');
@@ -42,7 +44,8 @@ class DomaineService {
         .timeout(timeoutDuration);
 
     if (response.statusCode == 200) {
-      return DomaineInfo.fromJson(jsonDecode(response.body));
+      return DomaineInfo.fromJson(
+          jsonDecode(response.body) as Map<String, dynamic>);
     } else {
       throw Exception("Domaine doesn't exist");
     }

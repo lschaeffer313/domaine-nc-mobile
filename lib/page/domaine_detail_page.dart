@@ -78,9 +78,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
         return month == 1 ? "$month mois restant" : "$month mois restants";
       } else {
         var year = (days / 365).floor();
-        return year == 1
-            ? "$year année restante"
-            : "$year années restantes";
+        return year == 1 ? "$year année restante" : "$year années restantes";
       }
     }
     return '';
