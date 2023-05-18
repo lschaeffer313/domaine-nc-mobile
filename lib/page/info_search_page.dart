@@ -1,4 +1,4 @@
-import 'package:domaine_nc_mobile/widget/search_bar.dart';
+import 'package:domaine_nc_mobile/widget/search_bar_domaine.dart';
 import 'package:domaine_nc_mobile/routes/search_route.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +36,7 @@ class _InfoSearchPageState extends State<InfoSearchPage> {
                 tag: widget.idTagHero,
                 child: Material(
                   color: Colors.transparent,
-                  child: SearchBar(
+                  child: SearchBarDomaine(
                     isAutoFocus: false,
                     readOnly: true,
                     callbackOnTap: navigateToSearchDomain,
