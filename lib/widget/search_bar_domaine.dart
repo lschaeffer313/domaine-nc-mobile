@@ -2,7 +2,7 @@ import 'package:domaine_nc_mobile/routes/search_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBarDomaine extends StatelessWidget {
   final idTagHero = "searchbar";
   final hintText = "opt";
   final String extensionNC = ".nc";
@@ -14,7 +14,7 @@ class SearchBar extends StatelessWidget {
   final Function(String)? callBackOnChanged;
   final TextEditingController? searchController;
 
-  const SearchBar({
+  const SearchBarDomaine({
     super.key,
     this.callbackOnTap,
     this.callBackOnChanged,

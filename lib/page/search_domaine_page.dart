@@ -4,7 +4,7 @@ import 'package:domaine_nc_mobile/model/domaine_search_result.dart';
 import 'package:domaine_nc_mobile/routes/search_route.dart';
 import 'package:domaine_nc_mobile/service/domaine_service.dart';
 import 'package:domaine_nc_mobile/utils/error_utils.dart';
-import 'package:domaine_nc_mobile/widget/search_bar.dart';
+import 'package:domaine_nc_mobile/widget/search_bar_domaine.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
@@ -180,7 +180,7 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
               tag: widget.idTagHero,
               child: Material(
                 color: Colors.transparent,
-                child: SearchBar(
+                child: SearchBarDomaine(
                     isAutoFocus: true,
                     readOnly: false,
                     searchController: _searchController,
