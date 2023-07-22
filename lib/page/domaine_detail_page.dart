@@ -161,7 +161,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
         ),
         DomainSpecificInfo(
           icon: const Icon(Icons.dns_rounded, size: 35),
-          title: "Serveur DNS :",
+          title: "Serveur(s) DNS :",
           subtitle: _listeDNS(),
         )
       ]);
