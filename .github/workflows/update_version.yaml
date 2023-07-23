@@ -21,7 +21,7 @@ jobs:
           extra_plugins: |
             @semantic-release/exec
             @semantic-release/git
-            @semantic-release/github
+            @semantic-release/github@8
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
       - name: 📩 Push change to the branch develop
