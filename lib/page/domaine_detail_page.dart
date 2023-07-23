@@ -132,6 +132,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
 
   List<Widget> _displayDomaineInfo() {
     _title = _domaineInfo!.nom;
+    var isMultipleDNS = _domaineInfo!.dns.length > 1;
     var listWidget = List<Widget>.of([]);
     if (!_domaineInfo!.isProtected) {
       var dateCreation = DateFormat.yMMMd().format(_domaineInfo!.dateCreation!);
@@ -161,7 +162,7 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
         ),
         DomainSpecificInfo(
           icon: const Icon(Icons.dns_rounded, size: 35),
-          title: "Serveur(s) DNS :",
+          title: isMultipleDNS ? "Serveurs DNS :" : "Serveur DNS :",
           subtitle: _listeDNS(),
         )
       ]);
