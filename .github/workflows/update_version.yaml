@@ -16,12 +16,12 @@ jobs:
           token: ${{ secrets.TOKEN }}
       - name: 🏃 Start semantic-release
         id: release
-        uses: cycjimmy/semantic-release-action@v3
+        uses: cycjimmy/semantic-release-action@v4
         with:
           extra_plugins: |
             @semantic-release/exec
             @semantic-release/git
-            @semantic-release/github@8
+            @semantic-release/github
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
       - name: 📩 Push change to the branch develop
