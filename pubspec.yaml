@@ -37,7 +37,7 @@ dependencies:
   http: ^0.13.6
   skeletons: ^0.0.3
   intl: ^0.18.1
-  add_2_calendar: ^2.2.4
+  add_2_calendar: ^2.2.5
   flutter_markdown: ^0.6.15
   url_launcher: ^6.1.11
 
