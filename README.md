@@ -27,6 +27,7 @@ Pour comprendre d'où vient cette application, une [video dédiée est disponibl
 - 🛍️ [Google Play Store](http://bit.ly/3Wq6E3L)
 - 📝 [HightTest/Testeum / Témoignage crowdtesting : ils ont fait tester leur appli mobile](https://hightest.nc/blog/gestion-des-tests/outils/temoignage-crowdtesting-ils-ont-fait-tester-leur-appli-mobile/)
 - 📝 [🚀 Mobile App deployment automation 📱](https://dev.to/optnc/mobile-app-deployment-automation-178p)
+- 📝 [Crowdtesting a Caledonian Mobile App](https://www.testeum.com/new-caledonia-domain-app/)
 
 # 👶 Les noms de domaine en Nouvelle-Calédonie ?
 
