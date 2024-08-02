@@ -31,8 +31,6 @@ class DarkThemeDataApp {
           secondary: DarkThemeDataApp.secondaryColor,
           error: DarkThemeDataApp.errorColor,
           onError: DarkThemeDataApp.mainColor,
-          background: DarkThemeDataApp.backgroundColor,
-          onBackground: DarkThemeDataApp.backgroundColor,
           onSurface: DarkThemeDataApp.backgroundColor,
           surface: DarkThemeDataApp.backgroundColor,
         ),
