@@ -6,7 +6,7 @@ import 'package:domaine_nc_mobile/utils/error_utils.dart';
 import 'package:domaine_nc_mobile/widget/domain_specific_info.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:skeletons/skeletons.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class DomaineDetailPage extends StatefulWidget {
   const DomaineDetailPage({
@@ -96,20 +96,16 @@ class _DomaineDetailPage extends State<DomaineDetailPage> {
   }
 
   List<Widget> _skeletonLoader() {
-    final defaultSkeletonTile = SkeletonListTile(
-      leadingStyle: const SkeletonAvatarStyle(
-        shape: BoxShape.circle,
+    final defaultSkeletonTile = Skeletonizer(
+      effect: const ShimmerEffect(
+        baseColor: Color.fromARGB(255, 196, 179, 23),
+        highlightColor: Colors.white,
+        duration: Duration(seconds: 1),
       ),
-      titleStyle: const SkeletonLineStyle(
-        width: 180,
-      ),
-      subtitleStyle: const SkeletonLineStyle(
-        width: 100,
-      ),
-      hasSubtitle: true,
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 8,
+      child: DomainSpecificInfo(
+        icon: const Icon(Icons.work_outlined, size: 35),
+        title: "Placeholder",
+        subtitle: "This is a placeholder for skeleton loader",
       ),
     );
     return [
