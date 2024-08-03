@@ -6,7 +6,7 @@ import 'package:domaine_nc_mobile/service/domaine_service.dart';
 import 'package:domaine_nc_mobile/utils/error_utils.dart';
 import 'package:domaine_nc_mobile/widget/search_bar_domaine.dart';
 import 'package:flutter/material.dart';
-import 'package:skeletons/skeletons.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class SearchDomainPage extends StatefulWidget {
   const SearchDomainPage({super.key});
@@ -135,30 +135,50 @@ class _SearchDomainPageState extends State<SearchDomainPage> {
       return Padding(
         padding: const EdgeInsets.only(top: 20),
         child: Text(
-          _searchController.value.text.isEmpty ? "" : "Aucun Résultat",
+          "Aucun Résultat",
         ),
       );
     }
   }
 
   Widget _skeletonLoader() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 18, left: 8),
-      child: SkeletonListView(
-        item: SkeletonListTile(
-          hasLeading: true,
-          hasSubtitle: true,
-          titleStyle: const SkeletonLineStyle(
-            maxLength: 200,
-            minLength: 100,
-            randomLength: true,
-          ),
-          subtitleStyle: const SkeletonLineStyle(
-            width: 100,
-          ),
-          leadingStyle: const SkeletonAvatarStyle(
-            shape: BoxShape.circle,
-            width: 44,
+    return Skeletonizer(
+      effect: const ShimmerEffect(
+        baseColor: Color.fromARGB(255, 196, 179, 23),
+        highlightColor: Colors.white,
+        duration: Duration(seconds: 1),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: SizedBox(
+          height: 10.0,
+          child: ListView.builder(
+            itemCount: 10,
+            shrinkWrap: true,
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: const Icon(
+                  Icons.public,
+                  size: 40,
+                ),
+                title: Padding(
+                  padding: const EdgeInsets.only(bottom: 5.0),
+                  child: Text(
+                    "Placeholder.nc",
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: Text(
+                    "This is a placeholder for domain",
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),
