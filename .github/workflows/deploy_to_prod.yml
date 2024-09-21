@@ -22,11 +22,11 @@ jobs:
       - name: 🔄 Get Application dependencies
         run: flutter pub get
 
-      - name: 🔑 Set Rapid API Key
+      - name: 🔑 Set APIGEE API Key
         run: |
-          sed -i 's/\[GIVE ME AN API KEY\]/'"${RAPID_API_KEY}"'/g' lib/service/domaine_service.dart
+          sed -i 's/\[GIVE ME AN API KEY\]/'"${APIGEE_API_KEY}"'/g' lib/service/domaine_service.dart
         env:
-          RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
+          APIGEE_API_KEY: ${{ secrets.APIGEE_API_KEY }}
 
       - name: 🛠 Setup Fastlane
         uses: ruby/setup-ruby@v1

@@ -17,8 +17,9 @@ class DarkThemeDataApp {
         brightness: Brightness.dark,
         primarySwatch: DarkThemeDataApp.mainColor,
         appBarTheme: const AppBarTheme(
-            backgroundColor: DarkThemeDataApp.mainColor,
-            foregroundColor: DarkThemeDataApp.backgroundColor),
+          backgroundColor: DarkThemeDataApp.mainColor,
+          foregroundColor: DarkThemeDataApp.backgroundColor,
+        ),
         listTileTheme: const ListTileThemeData(
           iconColor: DarkThemeDataApp.mainColor,
           textColor: DarkThemeDataApp.mainColor,
@@ -47,6 +48,10 @@ class DarkThemeDataApp {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(20)),
             borderSide: BorderSide(color: DarkThemeDataApp.mainColor),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            borderSide: BorderSide(color: DarkThemeDataApp.secondaryColor),
           ),
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(

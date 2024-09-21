@@ -22,7 +22,7 @@ Pour comprendre d'où vient cette application, une [video dédiée est disponibl
 # 🔖 Liens utiles
 
 - 📝 [Domaine.NC as a Service in the cloud Series' Articles](https://dev.to/adriens/series/18166)
-- 🛒 [API sur marketplace](https://rapidapi.com/opt-nc-opt-nc-default/api/domaine-nc/details)
+- 🛒 [API sur marketplace](https://api.opt.nc/)
 - 🍿 [Playlist sur YT](https://youtube.com/playlist?list=PL7GdrgVAWcDilGJGeNuVdvCM-lSmt5DNT)
 - 🛍️ [Google Play Store](http://bit.ly/3Wq6E3L)
 - 📝 [HightTest/Testeum / Témoignage crowdtesting : ils ont fait tester leur appli mobile](https://hightest.nc/blog/gestion-des-tests/outils/temoignage-crowdtesting-ils-ont-fait-tester-leur-appli-mobile/)

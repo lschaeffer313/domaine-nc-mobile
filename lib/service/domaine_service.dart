@@ -6,9 +6,9 @@ import 'package:domaine_nc_mobile/model/domaine_info.dart';
 import 'package:http/http.dart' as http;
 
 class DomaineService {
-  static const String _serverUrl = "https://domaine-nc.p.rapidapi.com";
+  static const String _serverUrl = "https://api.opt.nc/domainenc";
   static const Map<String, String> _headers = {
-    'X-RapidAPI-Key': '[GIVE ME AN API KEY]',
+    'X-ApiKey': '[GIVE ME AN API KEY]',
   };
 
   static Future<List<DomaineSearchResult>> fetchDomainFromSearch(
