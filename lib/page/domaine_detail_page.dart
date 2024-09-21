@@ -1,4 +1,4 @@
-import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:add_2_calendar_new/add_2_calendar_new.dart';
 import 'package:domaine_nc_mobile/model/domaine_info.dart';
 import 'package:domaine_nc_mobile/model/domaine_search_result.dart';
 import 'package:domaine_nc_mobile/service/domaine_service.dart';
