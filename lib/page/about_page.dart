@@ -14,6 +14,7 @@ class AboutPage extends StatelessWidget {
         host: 'raw.githubusercontent.com',
         path: 'lschaeffer313/domaine-nc-mobile/main/CONTRIBUTORS.md');
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         title: const Text("A propos"),
       ),

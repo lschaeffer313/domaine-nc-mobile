@@ -37,16 +37,20 @@ class SearchBarDomaine extends StatelessWidget {
           FilteringTextInputFormatter.deny(RegExp(regexSpace)),
         ],
         style: TextStyle(
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).colorScheme.primary,
         ),
         decoration: InputDecoration(
           counterText: "",
           hintText: hintText,
-          prefixIcon: const Icon(
+          prefixIcon: Icon(
             Icons.search,
+            color: Theme.of(context).colorScheme.primary,
           ),
           suffixIcon: GestureDetector(
-            child: const Icon(Icons.info_outline_rounded),
+            child: Icon(
+              Icons.info_outline_rounded,
+              color: Theme.of(context).colorScheme.primary,
+            ),
             onTap: () =>
                 Navigator.pushNamed(context, SearchRoute.aboutPageRoute),
           ),
