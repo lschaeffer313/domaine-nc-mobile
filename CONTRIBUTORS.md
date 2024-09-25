@@ -27,6 +27,8 @@ Par ordre historique dans l'histoire du projet... et sans qui l'application mobi
   - Conseil en design d'API
 - 🧔🏽 [Christophe ROGER](https://www.linkedin.com/in/christopheroger/)
   - Designer du [logo](https://github.com/lschaeffer313/domaine-nc-mobile/issues/113)
+- 👩 [Mélanie Gault](https://www.linkedin.com/in/melaniegault/)
+  - Gestionnaire API gateway sur Google APIGEE et maintenance [Portail d'API publique](https://apigee-optnc-prd-api.apigee.io/)  
 
 ## 🧪 Côté test
 
