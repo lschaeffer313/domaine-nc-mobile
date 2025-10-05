@@ -36,10 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.6
   http: ^0.13.6
   intl: ^0.18.1
-  add_2_calendar_new: ^1.0.3
+  add_2_calendar_new: ^1.0.4
   flutter_markdown: ^0.6.15
-  url_launcher: ^6.1.11
-  skeletonizer: ^1.4.2
+  url_launcher: ^6.3.2
+  skeletonizer: ^2.1.0+1
 
 dev_dependencies:
   flutter_test:
